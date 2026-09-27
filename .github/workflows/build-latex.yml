@@ -1,0 +1,29 @@
+name: Compilar projeto de estágio
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compilar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter os arquivos do projeto
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Compilar LaTeX e BibTeX
+        uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b # 4.1.0
+        with:
+          root_file: main.tex
+          texlive_version: '2026'
+
+      - name: Disponibilizar PDF compilado
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: Projeto_Estagio_UFAC-PDF
+          path: main.pdf
+          if-no-files-found: error
