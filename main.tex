@@ -1,12 +1,7 @@
 \documentclass[12pt,a4paper]{article}
 
-% ============================================================
-% TEMPLATE - PROJETO DE ESTÁGIO SUPERVISIONADO
-% Universidade Federal do Acre - Sistemas de Informação
-% Baseado no modelo fornecido em DOCX.
-% Compilador recomendado no Overleaf: pdfLaTeX
-% ============================================================
-
+% Projeto de Estágio Supervisionado - UFAC / Sistemas de Informação.
+% Documento principal: compilar com pdfLaTeX, BibTeX e pdfLaTeX duas vezes.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[brazil]{babel}
@@ -22,72 +17,47 @@
 \usepackage{helvet}
 \usepackage{url}
 \usepackage[alf]{abntex2cite}
+\usepackage[hidelinks]{hyperref}
 
-% Fonte sem serifa semelhante à Arial, compatível com pdfLaTeX.
 \renewcommand{\familydefault}{\sfdefault}
-
-% Margens do modelo original: superior/esquerda 3 cm; inferior/direita 2 cm.
-\geometry{
-  a4paper,
-  top=3cm,
-  bottom=2cm,
-  left=3cm,
-  right=2cm
-}
-
-% Espaçamento e parágrafos.
+\geometry{a4paper,top=3cm,bottom=2cm,left=3cm,right=2cm}
 \onehalfspacing
 \setlength{\parindent}{1.25cm}
 \setlength{\parskip}{6pt}
 \justifying
 
-% ====================== DADOS EDITÁVEIS =====================
-\newcommand{\Autor}{Kelvin Do Nascimento Moreira\\Marcos Antonio da Silva Manuares}
-\newcommand{\TituloTrabalho}{Plataforma Operacional de Nivelamento, Triagem e Editais}
-\newcommand{\Orientador}{Daricélio Moreira Soares}
+\newcommand{\Autor}{Marcos Vinícius Moraes Costa}
+\newcommand{\TituloTrabalho}{Desenvolvimento de um Sistema Web para Gestão e Controle de Uso da Sala de Informática da Biblioteca Central da Universidade Federal do Acre}
+\newcommand{\Orientadora}{Prof.ª Laura Costa Sarkis}
 \newcommand{\Curso}{CURSO DE BACHARELADO EM SISTEMAS DE INFORMAÇÃO}
 \newcommand{\Instituicao}{UNIVERSIDADE FEDERAL DO ACRE}
 \newcommand{\Cidade}{RIO BRANCO}
 \newcommand{\Ano}{2026}
-% ============================================================
 
-% Formatação dos títulos.
-\titleformat{\section}
-  {\bfseries\normalsize}
-  {\thesection}{0.5em}{\MakeUppercase}
-\titlespacing*{\section}{0pt}{5cm}{3cm}
+\titleformat{\section}{\bfseries\normalsize}{\thesection}{0.5em}{\MakeUppercase}
+\titlespacing*{\section}{0pt}{0pt}{0.8cm}
+\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection}{0.5em}{\MakeUppercase}
+\titlespacing*{\subsection}{0pt}{0.8cm}{0.35cm}
+\titleformat{\subsubsection}{\bfseries\normalsize}{\thesubsubsection}{0.5em}{}
+\titlespacing*{\subsubsection}{0pt}{0.55cm}{0.25cm}
+\newcommand{\secao}[1]{\clearpage\section{#1}}
 
-\titleformat{\subsection}
-  {\bfseries\normalsize}
-  {\thesubsection}{0.5em}{\MakeUppercase}
-\titlespacing*{\subsection}{0pt}{1.9cm}{1.5cm}
-
-% Comando para iniciar cada seção principal em uma nova página.
-\newcommand{\secao}[1]{%
-  \clearpage
-  \section{#1}%
-}
-
-% Numeração de páginas no canto superior direito.
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[R]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headheight}{15pt}
 
-% Formatação do sumário.
 \addto\captionsbrazil{\renewcommand{\contentsname}{SUMÁRIO}}
 \renewcommand{\cfttoctitlefont}{\hfill\bfseries\normalsize}
 \renewcommand{\cftaftertoctitle}{\hfill}
 \renewcommand{\cftsecfont}{\bfseries}
 \renewcommand{\cftsecpagefont}{\bfseries}
-\renewcommand{\cftsubsecfont}{\bfseries}
-\renewcommand{\cftsubsecpagefont}{\bfseries}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
-\setlength{\cftbeforetoctitleskip}{5cm}
-\setlength{\cftaftertoctitleskip}{2.5cm}
-\setlength{\cftbeforesecskip}{1pt}
+\setlength{\cftbeforetoctitleskip}{1cm}
+\setlength{\cftaftertoctitleskip}{1cm}
+\setlength{\cftbeforesecskip}{2pt}
 \setlength{\cftbeforesubsecskip}{0pt}
 \setlength{\cftsubsecindent}{0.95cm}
 \setlength{\cftsecnumwidth}{0.8cm}
@@ -95,225 +65,214 @@
 
 \begin{document}
 
-% =========================== CAPA ============================
 \begin{titlepage}
   \thispagestyle{empty}
   \centering
-
   \includegraphics[width=1.8cm]{ufac.png}\\[0.25cm]
   {\bfseries \Instituicao\par}
   {\bfseries \Curso\par}
-
   \vfill
-  {\bfseries \TituloTrabalho\par}
+  {\bfseries\MakeUppercase{\TituloTrabalho}\par}
   \vfill
-
   {\bfseries \Cidade\par}
   {\bfseries \Ano\par}
 \end{titlepage}
 
-% ===================== FOLHA DE ROSTO =======================
 \begin{titlepage}
   \thispagestyle{empty}
   \centering
-
   {\bfseries \Autor\par}
-
   \vfill
-  {\bfseries \TituloTrabalho\par}
-
+  {\bfseries\MakeUppercase{\TituloTrabalho}\par}
   \vspace{3.2cm}
   \begin{flushright}
     \begin{minipage}{8.3cm}
       \setlength{\parindent}{0pt}
-      Projeto de estágio supervisionado\\[0.35cm]
-      Prof. Orientador: \Orientador
+      Projeto de estágio supervisionado apresentado como exigência parcial para obtenção do grau de bacharel em Sistemas de Informação da Universidade Federal do Acre.\\[0.35cm]
+      Orientadora: \Orientadora
     \end{minipage}
   \end{flushright}
-
   \vfill
   {\bfseries \Cidade\par}
   {\bfseries \Ano\par}
 \end{titlepage}
 
-% ========================== SUMÁRIO ==========================
 \clearpage
 \pagestyle{empty}
 \tableofcontents
 \thispagestyle{empty}
 
-% No modelo, a primeira seção aparece como página 3 no sumário.
 \clearpage
 \pagestyle{fancy}
 \pagenumbering{arabic}
-\setcounter{page}{3}
+\setcounter{page}{4}
 
-% ============================================================
-% 1 APRESENTAÇÃO
-% ============================================================
 \section{APRESENTAÇÃO}
 
-% Dar uma introdução ao tema. Falar sobre o que se trata o estágio,
-% em qual empresa/setor será desenvolvido.
-%
-% Aproximadamente 1,5 página.
+A Biblioteca Central Ruy Alberto Costa Lins, localizada no Campus Sede da Universidade Federal do Acre (UFAC), em Rio Branco, disponibiliza uma Sala Virtual com computadores para uso da comunidade acadêmica. Atualmente, segundo o Plano de Trabalho do estágio, a utilização do espaço é registrada em folhas impressas. O preenchimento manual e a consolidação posterior desses registros exigem trabalho da equipe da biblioteca e dificultam a consulta imediata a informações sobre ocupação, horários de maior demanda e histórico de uso.
 
-% Escreva o texto da apresentação abaixo deste comentário.
+Este Projeto de Estágio Supervisionado propõe o desenvolvimento de um sistema web para apoiar a gestão e o controle de uso da sala. A solução prevista reunirá o registro de entrada e saída de alunos, professores e técnicos, o acompanhamento dos computadores, uma agenda simples de reservas, a fila de espera e o registro de ocorrências técnicas. Também deverá oferecer um painel diário, emissão de informes aos usuários, relatórios por diferentes períodos e exportação de dados em formatos adequados ao arquivamento e à prestação de contas.
 
-A transformação digital tem ampliado o uso de sistemas de software em diferentes áreas e aumentado a demanda por profissionais qualificados em Tecnologia da Informação. Esse cenário não ocorre de forma uniforme entre as regiões brasileiras. Na Região Norte, ainda existem desafios relacionados à oferta de formação especializada e à aproximação entre universidade e mercado de trabalho. Nesse contexto, iniciativas de formação complementar e parcerias entre instituições de ensino e empresas contribuem para ampliar a capacitação profissional e fortalecer o ecossistema regional de desenvolvimento de software \cite{vidal2026web,saar2023projeto}.
+O trabalho será realizado sob orientação da Prof.ª Laura Costa Sarkis e terá como ponto de partida a observação do atendimento e a análise dos modelos de controle usados pela biblioteca. Os requisitos serão detalhados com os responsáveis pelo espaço antes da definição dos fluxos e das regras do sistema. A aplicação será avaliada inicialmente com dados simulados e, posteriormente, por meio de validação dos fluxos com a equipe da Sala Virtual. O presente documento registra o problema, os objetivos, a fundamentação e o caminho metodológico proposto; resultados de implementação e de uso serão apresentados apenas no relatório final, quando houver evidências para sustentá-los.
 
-O Web Academy é uma iniciativa de extensão da Universidade Federal do Acre, realizada em parceria com a Motorola Mobility e a Flextronics, voltada à formação em desenvolvimento web \textit{full-stack}. O programa é desenvolvido no contexto da Lei de Informática e da Superintendência da Zona Franca de Manaus (SUFRAMA) e possui carga horária de 300 horas, distribuídas entre módulos básico, intermediário, avançado e \textit{hands-on}. A formação combina conteúdos técnicos, atividades práticas e desenvolvimento de projetos, com uso de metodologias ativas e práticas associadas a Scrum e Kanban \cite{saar2023projeto}.
-
-Além da capacitação técnica, o Web Academy tem contribuído para o fortalecimento do ecossistema local de tecnologia, com reflexos na inserção de participantes no mercado de trabalho, no desenvolvimento de iniciativas empreendedoras e no fortalecimento da pesquisa e da pós-graduação em Computação \cite{vidal2026web}. Esse contexto cria também a necessidade de organizar de forma mais eficiente os processos administrativos relacionados à seleção e ao acompanhamento dos participantes.
-
-O presente estágio está diretamente relacionado às atividades do Web Academy e tem como foco o desenvolvimento e a evolução do sistema P.O.N.T.E. (\textit{Plataforma Operacional de Nivelamento, Triagem e Editais}), criado para apoiar a execução dos processos seletivos do programa. A proposta surgiu da necessidade de reduzir atividades manuais e centralizar informações que antes dependiam de formulários, arquivos compactados, planilhas e diferentes procedimentos administrativos.
-
-O P.O.N.T.E. reúne em uma única aplicação diferentes etapas do processo seletivo. Entre suas funcionalidades estão a criação e edição de editais, inscrição de candidatos, envio individual de documentos, triagem documental, análise curricular, recursos, registro de etapas secundárias, classificação, homologação, geração de documentos oficiais, comunicação com candidatos e exportação dos dados dos convocados para continuidade do processo no Portal do Aluno. O sistema também busca melhorar a rastreabilidade das decisões tomadas durante a seleção, principalmente por meio da associação dos indeferimentos aos critérios definidos no edital.
-
-O desenvolvimento do sistema envolve conhecimentos de Engenharia de Software, desenvolvimento web, bancos de dados, modelagem de regras de negócio, segurança, testes e implantação. Dessa forma, o estágio permite aplicar conhecimentos adquiridos durante a graduação em uma situação real de desenvolvimento de software, acompanhando diferentes etapas do ciclo de vida da aplicação, desde a análise de requisitos até a implementação, testes, manutenção e implantação.
-
-Assim, o estágio está inserido em um contexto de formação, desenvolvimento tecnológico e apoio às atividades do Web Academy. O trabalho com o P.O.N.T.E. busca contribuir para a organização e a automatização do processo seletivo, ao mesmo tempo em que proporciona experiência prática no desenvolvimento e na evolução de um sistema real.
-
-% ============================================================
-% 2 PROBLEMA DA PESQUISA
-% ============================================================
 \secao{PROBLEMA DA PESQUISA}
 
-% Qual a grande questão que se busca responder?
-% Qual o problema da empresa que se pretende resolver?
-%
-% Até uma página.
+O controle em papel separa informações que precisam ser consultadas em conjunto: quem está usando a sala, qual computador está disponível, quais reservas estão previstas e quais equipamentos estão indisponíveis. A transcrição e a consolidação dos registros podem gerar retrabalho e erros de preenchimento. Além disso, a equipe não dispõe, no processo descrito no Plano de Trabalho, de uma visão digital integrada para acompanhar a ocupação e produzir rapidamente relatórios diários, semanais, mensais e anuais.
 
-% Escreva o problema da pesquisa abaixo deste comentário.
+A necessidade não se limita a substituir a folha impressa. É preciso organizar o atendimento quando todos os computadores estão ocupados, evitar conflitos entre reservas e uso efetivo, registrar ocorrências técnicas e diferenciar as permissões de administradores, servidores da biblioteca e estagiários. A interface deverá ser compreensível para quem atende e para quem utiliza o espaço, considerando também recomendações de acessibilidade digital.
 
+Assim, a questão que orienta o estágio é: \textit{como um sistema web pode apoiar, de forma organizada e acessível, o registro, o acompanhamento e a produção de informações sobre o uso da Sala Virtual da Biblioteca Central da UFAC?} O projeto se restringe à Sala Virtual descrita no Plano de Trabalho. Regras específicas de atendimento, duração de uso, prioridade na fila e política de reservas serão levantadas com a biblioteca, em vez de serem presumidas neste documento.
 
-% ============================================================
-% 3 OBJETIVOS DA PESQUISA
-% ============================================================
 \secao{OBJETIVOS DA PESQUISA}
 
 \subsection{OBJETIVO GERAL}
 
-% Qual o objetivo maior do trabalho?
-
-% Escreva o objetivo geral abaixo deste comentário.
-
+Desenvolver um sistema web para automatizar o registro, o acompanhamento e a geração de relatórios de uso da Sala Virtual da Biblioteca Central da UFAC, contribuindo para a modernização do controle administrativo do espaço, a organização das informações coletadas e a melhoria do acompanhamento da utilização dos computadores pela comunidade acadêmica.
 
 \subsection{OBJETIVOS ESPECÍFICOS}
 
-% Quais os demais objetivos?
+Para alcançar o objetivo geral, estão previstos os seguintes objetivos específicos, derivados do Plano de Trabalho:
 
-% Escreva os objetivos específicos abaixo deste comentário.
+\begin{enumerate}
+  \item Levantar os requisitos a partir do funcionamento atual da Sala Virtual e dos modelos de controle manual utilizados pela biblioteca.
+  \item Modelar os dados necessários para usuários, computadores, sessões de uso, reservas, fila de espera, ocorrências e relatórios.
+  \item Implementar o registro digital de entrada e saída, com cálculo do tempo de permanência e identificação do turno de utilização.
+  \item Desenvolver o controle da situação dos computadores, distinguindo equipamentos livres, ocupados, reservados e em manutenção.
+  \item Criar uma agenda simples para agendar horários, consultar reservas e controlar o comparecimento dos usuários.
+  \item Registrar os usuários que aguardam a disponibilidade de computadores em uma fila de espera.
+  \item Desenvolver um painel administrativo com usuários presentes, computadores em uso, reservas do dia, ocorrências e envio de notificações ou informes aos usuários da sala.
+  \item Registrar ocorrências técnicas, incluindo defeitos, manutenção, indisponibilidade e problemas de funcionamento dos computadores.
+  \item Gerar relatórios diários, semanais, mensais e anuais, com totais por turno, data, computador e período.
+  \item Permitir a exportação dos relatórios para arquivamento e prestação de contas, em PDF, CSV ou planilha, conforme os requisitos confirmados com a biblioteca.
+  \item Diferenciar as permissões de administradores, servidores da biblioteca e estagiários por meio de perfis de acesso.
+  \item Realizar testes com dados simulados e validar posteriormente os fluxos do sistema com base no atendimento real da Sala Virtual.
+  \item Produzir documentação básica de uso, instalação e manutenção para apoiar a continuidade do sistema após o estágio.
+\end{enumerate}
 
-
-% ============================================================
-% 4 JUSTIFICATIVA DA PESQUISA
-% ============================================================
 \secao{JUSTIFICATIVA DA PESQUISA}
 
-% Por que foi realizado o estágio sobre este assunto, nesta empresa?
-% Justificar aqui a importância do tema.
-% Qual a importância em se pesquisar este assunto?
-%
-% Aproximadamente 1 página.
+O registro manual atualmente descrito no Plano de Trabalho exige preenchimento em folhas impressas e consolidação posterior. Essa rotina dificulta o acompanhamento do espaço no momento do atendimento e torna mais trabalhosa a obtenção de informações como a quantidade de usuários por turno, os dias mais movimentados e os computadores mais utilizados. A informatização proposta busca organizar os registros em uma única fonte de consulta e reduzir etapas repetitivas da elaboração de relatórios. Esses benefícios são expectativas do projeto e deverão ser examinados durante a validação, sem pressupor ganhos já medidos.
 
-% Escreva a justificativa abaixo deste comentário.
+O sistema também poderá apoiar decisões operacionais da biblioteca. A visualização dos computadores disponíveis, ocupados, reservados ou em manutenção poderá orientar o atendimento; a agenda e a fila de espera poderão tornar mais claro o tratamento da demanda; e o histórico de ocorrências poderá auxiliar no acompanhamento de problemas técnicos. Relatórios por período e por turno poderão oferecer informações para planejamento do uso da sala e prestação de contas institucional.
 
+Há ainda uma justificativa ligada à qualidade da interação. Uma aplicação utilizada em serviço universitário precisa apresentar informações e formulários de modo compreensível e acessível. A proposta incorpora a análise do contexto de uso e a avaliação da interface com os usuários envolvidos, em consonância com práticas de Interação Humano-Computador e de projeto centrado nas pessoas \cite{barbosaSilva2010,iso9241_210_2019}. As recomendações do eMAG e os critérios da WCAG servirão como referência para planejar e verificar a acessibilidade da interface \cite{emag2014,wcag22_2024}.
 
-% ============================================================
-% 5 FUNDAMENTAÇÃO TEÓRICA
-% ============================================================
+Do ponto de vista acadêmico, o estágio permite integrar levantamento de requisitos, modelagem de dados, projeto de interface, desenvolvimento e testes em um problema real de Sistemas de Informação. A documentação do processo deverá permitir que o relatório final diferencie requisitos planejados, funcionalidades efetivamente entregues, limitações observadas e recomendações para continuidade.
+
 \secao{FUNDAMENTAÇÃO TEÓRICA}
 
-% Parte teórica do estágio: qual o assunto que dá o embasamento para o estágio?
-% Quais os principais temas que precisam ser abordados?
-%
-% Geralmente de 3 a 5 páginas baseadas em autores, de preferência livros,
-% usando as normas metodológicas para citá-los.
+\subsection{ENGENHARIA DE SOFTWARE}
 
-\subsection{SUBTÍTULO}
+A Engenharia de Software reúne processos e técnicas para especificar, construir, verificar e evoluir sistemas. Em um projeto institucional, essas atividades ajudam a relacionar o problema observado às funcionalidades propostas e a registrar decisões que poderão ser revisadas ao longo do desenvolvimento \cite{sommerville2016}. Para a Sala Virtual, isso significa descrever o fluxo de atendimento antes de transformar o registro em papel em telas e rotinas digitais.
 
-% Escreva aqui o conteúdo do primeiro subtópico.
+\subsubsection{Engenharia de requisitos}
 
+Requisitos expressam o que o sistema deverá fazer e quais condições de qualidade deverão orientar seu funcionamento. A norma ISO/IEC/IEEE 29148:2018 oferece orientação para os processos e produtos da Engenharia de Requisitos, incluindo a elaboração de requisitos verificáveis \cite{iso29148_2018}. No estágio, o levantamento deverá combinar observação da rotina, análise das folhas usadas pela biblioteca e conversas com os responsáveis pelo atendimento.
 
-\subsection{SUBTÍTULO}
+Os requisitos funcionais deverão cobrir, entre outros, entrada e saída, estado dos computadores, reservas, fila, ocorrências, informes, relatórios e exportação. Requisitos não funcionais deverão tratar de acesso por perfil, clareza da interface, acessibilidade e integridade dos registros. Regras ainda desconhecidas, como tempo máximo de uso e prioridade de atendimento, deverão ser confirmadas antes de sua especificação. Uma matriz que relacione cada requisito ao objetivo correspondente e a um caso de teste poderá apoiar a rastreabilidade \cite{sommerville2016,iso29148_2018}.
 
-% Escreva aqui o conteúdo do segundo subtópico.
+\subsubsection{Verificação e validação}
 
+A verificação examina se os componentes e fluxos funcionam conforme a especificação; a validação observa se a solução atende à necessidade de quem a utilizará \cite{sommerville2016}. No projeto, os testes com dados simulados deverão cobrir registros completos e incompletos, conflitos de reserva, transições de estado de computadores, permissões e consistência dos totais dos relatórios. A validação posterior com a equipe da biblioteca deverá confrontar os fluxos previstos com a rotina real, registrando ajustes e limites identificados.
 
-\clearpage
-\subsection{SUBTÍTULO}
+\subsection{INTERAÇÃO HUMANO-COMPUTADOR}
 
-% Escreva aqui o conteúdo do terceiro subtópico.
+A Interação Humano-Computador estuda o projeto e a avaliação de sistemas interativos considerando as pessoas, suas tarefas e o contexto de uso. Barbosa e Silva apresentam métodos para identificar necessidades dos usuários, projetar interfaces e avaliar a interação \cite{barbosaSilva2010}. Na Sala Virtual, haverá atividades distintas para quem busca um computador, para quem registra o atendimento e para quem acompanha relatórios; essas diferenças devem orientar a organização das telas e das informações.
 
+A ISO 9241-210:2019 apresenta princípios e atividades de projeto centrado nas pessoas ao longo do ciclo de vida de sistemas interativos \cite{iso9241_210_2019}. Assim, a proposta prevê descrever tarefas frequentes, produzir representações das interfaces e submetê-las a avaliação com os envolvidos. Indicadores observáveis, como compreensão dos estados dos computadores, facilidade de localizar uma reserva e prevenção de erros em formulários, poderão orientar os ajustes. A escolha de padrões visuais e mensagens deverá resultar do contexto de uso identificado, e não apenas da preferência técnica da equipe.
 
-\subsection{SUBTÍTULO}
+\subsection{BANCO DE DADOS}
 
-% Escreva aqui o conteúdo do quarto subtópico.
+Um sistema de banco de dados permite organizar e consultar informações mantendo relações entre elas. A modelagem conceitual e a definição de restrições de integridade são importantes para evitar registros contraditórios e apoiar consultas confiáveis \cite{silberschatz2019}. No sistema proposto, usuários, computadores, sessões de uso, reservas, posições de espera e ocorrências estarão relacionados; por exemplo, uma sessão deverá indicar o computador utilizado e os horários de entrada e saída.
 
+O modelo de dados também deverá sustentar os relatórios previstos no Plano de Trabalho. Antes da implementação, será necessário definir quais eventos geram registros, como representar ausência de comparecimento, como registrar manutenção e quais dados são necessários para totais por turno, data, computador e período. O esquema e as consultas deverão ser examinados com casos simulados para verificar se os números apresentados são reproduzíveis e coerentes. A escolha do gerenciador de banco de dados será registrada após a análise das condições técnicas do ambiente de implantação, sem pressupor uma tecnologia que o Plano de Trabalho não definiu.
 
-% ============================================================
-% 6 PROCEDIMENTOS METODOLÓGICOS
-% ============================================================
+\subsection{ACESSIBILIDADE DIGITAL}
+
+O Modelo de Acessibilidade em Governo Eletrônico (eMAG), versão 3.1, reúne recomendações brasileiras para tornar conteúdos e serviços digitais públicos acessíveis \cite{emag2014}. Como o sistema atenderá um espaço universitário público, o eMAG é uma referência pertinente para planejar formulários, navegação, apresentação de informações e avaliação da interface. A Web Content Accessibility Guidelines (WCAG) 2.2, do W3C, complementa esse planejamento com critérios de sucesso verificáveis para conteúdo web \cite{wcag22_2024}.
+
+Na avaliação prevista, deverão ser examinados, conforme as telas produzidas, rótulos de campos, sequência de navegação por teclado, foco visível, contraste, mensagens de erro e alternativas textuais para informações visuais. A verificação automática poderá localizar parte dos problemas, mas deverá ser complementada por inspeção manual e observação de uso. A adoção dessas referências neste projeto não constitui, por si só, uma declaração de conformidade: o relatório final deverá informar os critérios efetivamente avaliados e os resultados encontrados \cite{emag2014,wcag22_2024}.
+
 \secao{PROCEDIMENTOS METODOLÓGICOS}
 
-% Como será realizado o estágio? Pesquisa bibliográfica, estudo de caso,
-% levantamento (ver manual sobre metodologia no grupo).
-%
-% Detalhar se há instrumentos de coleta de dados, como questionário,
-% formulário, entrevista ou observação; quem é a população e a amostra;
-% e como os dados serão tabulados.
-%
-% Se for desenvolvimento de sistemas ou de aplicações, falar quais
-% ferramentas serão utilizadas.
+O estágio será conduzido como um trabalho aplicado de desenvolvimento de sistema de informação, com levantamento qualitativo do contexto de atendimento e avaliação prática dos fluxos propostos. O local de estudo é a Sala Virtual da Biblioteca Central Ruy Alberto Costa Lins, no Campus Sede da UFAC. Participarão do levantamento os responsáveis pelo funcionamento do espaço e, quando pertinente à validação, pessoas que executam ou recebem o atendimento. A quantidade de participantes e os procedimentos de coleta serão definidos com a biblioteca; este projeto não presume uma amostra numérica.
 
-% Escreva os procedimentos metodológicos abaixo deste comentário.
+\subsection{LEVANTAMENTO E ESPECIFICAÇÃO}
 
+Inicialmente, serão observados o registro de entrada e saída, a atribuição de computadores, o tratamento de espera e a elaboração dos relatórios. As folhas impressas e demais modelos de controle serão analisados para identificar campos, regras e dificuldades recorrentes. Conversas com servidores e estagiários deverão esclarecer exceções, prioridades e necessidades de consulta. Os dados necessários à especificação serão descritos por categoria, evitando a reprodução de matrículas ou outros registros pessoais reais na documentação pública.
 
-% ============================================================
-% 7 ESBOÇO DOS CAPÍTULOS E SEÇÕES
-% ============================================================
+O resultado desta etapa será uma relação de requisitos funcionais e não funcionais, com indicação de origem, prioridade acordada com a biblioteca e critério de verificação. Serão descritos os fluxos de entrada, saída, reserva, comparecimento, espera, manutenção, ocorrência, emissão de informes e consulta de relatórios. Regras de negócio ainda não confirmadas permanecerão identificadas para validação com o setor.
+
+\subsection{MODELAGEM E PLANEJAMENTO DA SOLUÇÃO}
+
+Com os requisitos definidos, serão preparados o modelo de dados, a descrição dos perfis de acesso e representações das principais telas e fluxos. A modelagem deverá contemplar usuários, computadores, sessões, reservas, fila de espera e ocorrências, além dos dados necessários aos relatórios. Serão especificadas as condições para mudança de estado dos computadores e para evitar registros ou reservas conflitantes. O planejamento da interface considerará as tarefas dos diferentes perfis e os critérios de acessibilidade selecionados a partir do eMAG e da WCAG \cite{barbosaSilva2010,emag2014,wcag22_2024}.
+
+\subsection{DESENVOLVIMENTO PREVISTO}
+
+A implementação será organizada em incrementos: cadastro e situação dos computadores; registro de entrada e saída com cálculo de permanência e turno; agenda, reservas e comparecimento; fila de espera; ocorrências; painel e informes; relatórios e exportação; e controle de permissões. A ordem poderá ser ajustada conforme dependências identificadas no levantamento, preservando a cobertura dos objetivos aprovados. As tecnologias de implementação serão descritas no relatório final após sua escolha e uso efetivo. O código da aplicação ficará no repositório informado para esse fim, enquanto este projeto e suas referências permanecerão no repositório de documentação.
+
+\subsection{TESTES, VALIDAÇÃO E REGISTRO DOS RESULTADOS}
+
+Antes do uso com o fluxo real, serão elaborados cenários com dados simulados. Os testes deverão verificar, no mínimo: entrada e saída com horários válidos; cálculo de permanência e turno; estados dos computadores; conflitos de reserva; comparecimento; inclusão e atendimento da fila; restrição de ações por perfil; registro de ocorrências; totais e filtros dos relatórios; e arquivos exportados. Problemas encontrados e correções serão registrados para permitir sua análise no relatório final.
+
+Posteriormente, os fluxos serão apresentados à equipe da Sala Virtual para validação em relação ao atendimento cotidiano. Serão observadas a compreensão das telas, a adequação das informações exibidas e as divergências entre regras especificadas e prática do setor. Ajustes solicitados serão documentados com sua justificativa. A documentação de uso, instalação e manutenção deverá acompanhar a versão entregue. O relatório final indicará o que foi implementado e verificado, o que permaneceu pendente e quais evidências sustentam cada conclusão.
+
 \secao{ESBOÇO DOS CAPÍTULOS E SEÇÕES}
 
-% O relatório de estágio seguirá a seguinte estrutura:
-%
-% Detalhar a estrutura que será adotada. Sugere-se consultar o modelo
-% de relatório de estágio e detalhar principalmente a parte do referencial
-% teórico, que mudará para cada caso.
+O relatório final de estágio, a ser escrito após a execução das atividades, deverá apresentar a seguinte estrutura preliminar:
 
-% Escreva o esboço dos capítulos e seções abaixo deste comentário.
+\begin{enumerate}
+  \item \textbf{Introdução}: contexto da Biblioteca Central e da Sala Virtual, problema, objetivos, justificativa, método e organização do relatório.
+  \item \textbf{Fundamentação teórica}: Engenharia de Software e requisitos, verificação e validação, Interação Humano-Computador, banco de dados e acessibilidade digital.
+  \item \textbf{Estágio supervisionado}: caracterização da instituição e do ambiente; levantamento do processo atual; requisitos e modelagem; atividades de desenvolvimento; testes e validação com a biblioteca.
+  \item \textbf{Resultados e discussão}: funcionalidades efetivamente entregues, evidências de teste, avaliação dos fluxos, limitações e comparação com os objetivos propostos.
+  \item \textbf{Considerações finais e recomendações}: síntese do trabalho realizado e orientações para continuidade, manutenção ou evolução do sistema.
+\end{enumerate}
 
+Apêndices poderão reunir instrumentos de levantamento, modelos e registros de teste produzidos no estágio, desde que sua divulgação não exponha dados pessoais ou informações internas desnecessárias. A estrutura poderá ser refinada com a orientação acadêmica conforme as atividades realizadas.
 
-% ============================================================
-% 8 CRONOGRAMA
-% ============================================================
 \secao{CRONOGRAMA}
 
-% Colocar um gráfico de Gantt com a programação do estágio, considerando
-% prazos para pesquisas bibliográficas, elaboração do projeto, apresentação
-% do projeto, desenvolvimento do estágio na empresa, elaboração/aplicação
-% de questionários, tabulação de dados, entrevistas, elaboração de
-% relatórios etc.
-%
-% Você pode inserir aqui uma tabela em LaTeX ou uma imagem do gráfico de Gantt.
+A Tabela~\ref{tab:cronograma} apresenta uma estimativa de 16 semanas relativas para organizar o trabalho. As semanas não representam datas oficiais da disciplina nem comprovam a execução das atividades. Sobreposições permitem revisar requisitos e testar incrementos enquanto outras partes do sistema são planejadas. O calendário deverá ser ajustado aos prazos de apresentação definidos pela disciplina e à disponibilidade da biblioteca.
 
-% Insira o cronograma abaixo deste comentário.
+\begin{table}[htbp]
+\centering
+\caption{Cronograma preliminar de atividades}
+\label{tab:cronograma}
+\small
+\begin{tabular}{|p{7.2cm}|p{2.1cm}|p{4.7cm}|}
+\hline
+\textbf{Atividade prevista} & \textbf{Semanas} & \textbf{Produto esperado} \\
+\hline
+Revisão bibliográfica e observação do controle manual & 1--2 & Caracterização do processo atual \\
+\hline
+Levantamento, análise e validação dos requisitos & 2--4 & Relação de requisitos e regras confirmadas \\
+\hline
+Modelagem de dados, perfis e fluxos de interface & 4--6 & Modelos e protótipos \\
+\hline
+Registro de uso e controle dos computadores & 6--8 & Fluxos de entrada, saída e situação dos equipamentos \\
+\hline
+Agenda, reservas, comparecimento e fila de espera & 8--10 & Fluxos de organização da demanda \\
+\hline
+Painel, informes, ocorrências e permissões & 10--12 & Recursos administrativos previstos \\
+\hline
+Relatórios e exportação & 12--13 & Consultas por período e arquivos de saída \\
+\hline
+Testes com dados simulados e ajustes & 13--15 & Registro de cenários e resultados \\
+\hline
+Validação com a biblioteca e documentação & 15--16 & Registro de avaliação e manuais básicos \\
+\hline
+Redação e revisão do relatório de estágio & 12--16 & Relatório final para orientação e apresentação \\
+\hline
+\end{tabular}
+\par\vspace{0.2cm}
+\footnotesize Fonte: elaboração própria (2026).
+\end{table}
 
-
-% ============================================================
-% REFERÊNCIAS BIBLIOGRÁFICAS
-% ============================================================
 \clearpage
 \renewcommand{\refname}{REFERÊNCIAS BIBLIOGRÁFICAS}
 \phantomsection
 \addcontentsline{toc}{section}{REFERÊNCIAS BIBLIOGRÁFICAS}
-
-% As referências devem ser cadastradas no arquivo referencias.bib.
-%
-% Para citar no texto, use, por exemplo:
-% \citeonline{chave}  -> Autor (ano)
-% \cite{chave}        -> (AUTOR, ano)
-
 \bibliography{referencias}
 
 \end{document}
