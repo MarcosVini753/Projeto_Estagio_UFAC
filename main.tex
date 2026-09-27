@@ -1,0 +1,319 @@
+\documentclass[12pt,a4paper]{article}
+
+% ============================================================
+% TEMPLATE - PROJETO DE ESTÁGIO SUPERVISIONADO
+% Universidade Federal do Acre - Sistemas de Informação
+% Baseado no modelo fornecido em DOCX.
+% Compilador recomendado no Overleaf: pdfLaTeX
+% ============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{ragged2e}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+\usepackage{microtype}
+\usepackage{helvet}
+\usepackage{url}
+\usepackage[alf]{abntex2cite}
+
+% Fonte sem serifa semelhante à Arial, compatível com pdfLaTeX.
+\renewcommand{\familydefault}{\sfdefault}
+
+% Margens do modelo original: superior/esquerda 3 cm; inferior/direita 2 cm.
+\geometry{
+  a4paper,
+  top=3cm,
+  bottom=2cm,
+  left=3cm,
+  right=2cm
+}
+
+% Espaçamento e parágrafos.
+\onehalfspacing
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{6pt}
+\justifying
+
+% ====================== DADOS EDITÁVEIS =====================
+\newcommand{\Autor}{Kelvin Do Nascimento Moreira\\Marcos Antonio da Silva Manuares}
+\newcommand{\TituloTrabalho}{Plataforma Operacional de Nivelamento, Triagem e Editais}
+\newcommand{\Orientador}{Daricélio Moreira Soares}
+\newcommand{\Curso}{CURSO DE BACHARELADO EM SISTEMAS DE INFORMAÇÃO}
+\newcommand{\Instituicao}{UNIVERSIDADE FEDERAL DO ACRE}
+\newcommand{\Cidade}{RIO BRANCO}
+\newcommand{\Ano}{2026}
+% ============================================================
+
+% Formatação dos títulos.
+\titleformat{\section}
+  {\bfseries\normalsize}
+  {\thesection}{0.5em}{\MakeUppercase}
+\titlespacing*{\section}{0pt}{5cm}{3cm}
+
+\titleformat{\subsection}
+  {\bfseries\normalsize}
+  {\thesubsection}{0.5em}{\MakeUppercase}
+\titlespacing*{\subsection}{0pt}{1.9cm}{1.5cm}
+
+% Comando para iniciar cada seção principal em uma nova página.
+\newcommand{\secao}[1]{%
+  \clearpage
+  \section{#1}%
+}
+
+% Numeração de páginas no canto superior direito.
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{15pt}
+
+% Formatação do sumário.
+\addto\captionsbrazil{\renewcommand{\contentsname}{SUMÁRIO}}
+\renewcommand{\cfttoctitlefont}{\hfill\bfseries\normalsize}
+\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\bfseries}
+\renewcommand{\cftsubsecpagefont}{\bfseries}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
+\setlength{\cftbeforetoctitleskip}{5cm}
+\setlength{\cftaftertoctitleskip}{2.5cm}
+\setlength{\cftbeforesecskip}{1pt}
+\setlength{\cftbeforesubsecskip}{0pt}
+\setlength{\cftsubsecindent}{0.95cm}
+\setlength{\cftsecnumwidth}{0.8cm}
+\setlength{\cftsubsecnumwidth}{1.2cm}
+
+\begin{document}
+
+% =========================== CAPA ============================
+\begin{titlepage}
+  \thispagestyle{empty}
+  \centering
+
+  \includegraphics[width=1.8cm]{ufac.png}\\[0.25cm]
+  {\bfseries \Instituicao\par}
+  {\bfseries \Curso\par}
+
+  \vfill
+  {\bfseries \TituloTrabalho\par}
+  \vfill
+
+  {\bfseries \Cidade\par}
+  {\bfseries \Ano\par}
+\end{titlepage}
+
+% ===================== FOLHA DE ROSTO =======================
+\begin{titlepage}
+  \thispagestyle{empty}
+  \centering
+
+  {\bfseries \Autor\par}
+
+  \vfill
+  {\bfseries \TituloTrabalho\par}
+
+  \vspace{3.2cm}
+  \begin{flushright}
+    \begin{minipage}{8.3cm}
+      \setlength{\parindent}{0pt}
+      Projeto de estágio supervisionado\\[0.35cm]
+      Prof. Orientador: \Orientador
+    \end{minipage}
+  \end{flushright}
+
+  \vfill
+  {\bfseries \Cidade\par}
+  {\bfseries \Ano\par}
+\end{titlepage}
+
+% ========================== SUMÁRIO ==========================
+\clearpage
+\pagestyle{empty}
+\tableofcontents
+\thispagestyle{empty}
+
+% No modelo, a primeira seção aparece como página 3 no sumário.
+\clearpage
+\pagestyle{fancy}
+\pagenumbering{arabic}
+\setcounter{page}{3}
+
+% ============================================================
+% 1 APRESENTAÇÃO
+% ============================================================
+\section{APRESENTAÇÃO}
+
+% Dar uma introdução ao tema. Falar sobre o que se trata o estágio,
+% em qual empresa/setor será desenvolvido.
+%
+% Aproximadamente 1,5 página.
+
+% Escreva o texto da apresentação abaixo deste comentário.
+
+A transformação digital tem ampliado o uso de sistemas de software em diferentes áreas e aumentado a demanda por profissionais qualificados em Tecnologia da Informação. Esse cenário não ocorre de forma uniforme entre as regiões brasileiras. Na Região Norte, ainda existem desafios relacionados à oferta de formação especializada e à aproximação entre universidade e mercado de trabalho. Nesse contexto, iniciativas de formação complementar e parcerias entre instituições de ensino e empresas contribuem para ampliar a capacitação profissional e fortalecer o ecossistema regional de desenvolvimento de software \cite{vidal2026web,saar2023projeto}.
+
+O Web Academy é uma iniciativa de extensão da Universidade Federal do Acre, realizada em parceria com a Motorola Mobility e a Flextronics, voltada à formação em desenvolvimento web \textit{full-stack}. O programa é desenvolvido no contexto da Lei de Informática e da Superintendência da Zona Franca de Manaus (SUFRAMA) e possui carga horária de 300 horas, distribuídas entre módulos básico, intermediário, avançado e \textit{hands-on}. A formação combina conteúdos técnicos, atividades práticas e desenvolvimento de projetos, com uso de metodologias ativas e práticas associadas a Scrum e Kanban \cite{saar2023projeto}.
+
+Além da capacitação técnica, o Web Academy tem contribuído para o fortalecimento do ecossistema local de tecnologia, com reflexos na inserção de participantes no mercado de trabalho, no desenvolvimento de iniciativas empreendedoras e no fortalecimento da pesquisa e da pós-graduação em Computação \cite{vidal2026web}. Esse contexto cria também a necessidade de organizar de forma mais eficiente os processos administrativos relacionados à seleção e ao acompanhamento dos participantes.
+
+O presente estágio está diretamente relacionado às atividades do Web Academy e tem como foco o desenvolvimento e a evolução do sistema P.O.N.T.E. (\textit{Plataforma Operacional de Nivelamento, Triagem e Editais}), criado para apoiar a execução dos processos seletivos do programa. A proposta surgiu da necessidade de reduzir atividades manuais e centralizar informações que antes dependiam de formulários, arquivos compactados, planilhas e diferentes procedimentos administrativos.
+
+O P.O.N.T.E. reúne em uma única aplicação diferentes etapas do processo seletivo. Entre suas funcionalidades estão a criação e edição de editais, inscrição de candidatos, envio individual de documentos, triagem documental, análise curricular, recursos, registro de etapas secundárias, classificação, homologação, geração de documentos oficiais, comunicação com candidatos e exportação dos dados dos convocados para continuidade do processo no Portal do Aluno. O sistema também busca melhorar a rastreabilidade das decisões tomadas durante a seleção, principalmente por meio da associação dos indeferimentos aos critérios definidos no edital.
+
+O desenvolvimento do sistema envolve conhecimentos de Engenharia de Software, desenvolvimento web, bancos de dados, modelagem de regras de negócio, segurança, testes e implantação. Dessa forma, o estágio permite aplicar conhecimentos adquiridos durante a graduação em uma situação real de desenvolvimento de software, acompanhando diferentes etapas do ciclo de vida da aplicação, desde a análise de requisitos até a implementação, testes, manutenção e implantação.
+
+Assim, o estágio está inserido em um contexto de formação, desenvolvimento tecnológico e apoio às atividades do Web Academy. O trabalho com o P.O.N.T.E. busca contribuir para a organização e a automatização do processo seletivo, ao mesmo tempo em que proporciona experiência prática no desenvolvimento e na evolução de um sistema real.
+
+% ============================================================
+% 2 PROBLEMA DA PESQUISA
+% ============================================================
+\secao{PROBLEMA DA PESQUISA}
+
+% Qual a grande questão que se busca responder?
+% Qual o problema da empresa que se pretende resolver?
+%
+% Até uma página.
+
+% Escreva o problema da pesquisa abaixo deste comentário.
+
+
+% ============================================================
+% 3 OBJETIVOS DA PESQUISA
+% ============================================================
+\secao{OBJETIVOS DA PESQUISA}
+
+\subsection{OBJETIVO GERAL}
+
+% Qual o objetivo maior do trabalho?
+
+% Escreva o objetivo geral abaixo deste comentário.
+
+
+\subsection{OBJETIVOS ESPECÍFICOS}
+
+% Quais os demais objetivos?
+
+% Escreva os objetivos específicos abaixo deste comentário.
+
+
+% ============================================================
+% 4 JUSTIFICATIVA DA PESQUISA
+% ============================================================
+\secao{JUSTIFICATIVA DA PESQUISA}
+
+% Por que foi realizado o estágio sobre este assunto, nesta empresa?
+% Justificar aqui a importância do tema.
+% Qual a importância em se pesquisar este assunto?
+%
+% Aproximadamente 1 página.
+
+% Escreva a justificativa abaixo deste comentário.
+
+
+% ============================================================
+% 5 FUNDAMENTAÇÃO TEÓRICA
+% ============================================================
+\secao{FUNDAMENTAÇÃO TEÓRICA}
+
+% Parte teórica do estágio: qual o assunto que dá o embasamento para o estágio?
+% Quais os principais temas que precisam ser abordados?
+%
+% Geralmente de 3 a 5 páginas baseadas em autores, de preferência livros,
+% usando as normas metodológicas para citá-los.
+
+\subsection{SUBTÍTULO}
+
+% Escreva aqui o conteúdo do primeiro subtópico.
+
+
+\subsection{SUBTÍTULO}
+
+% Escreva aqui o conteúdo do segundo subtópico.
+
+
+\clearpage
+\subsection{SUBTÍTULO}
+
+% Escreva aqui o conteúdo do terceiro subtópico.
+
+
+\subsection{SUBTÍTULO}
+
+% Escreva aqui o conteúdo do quarto subtópico.
+
+
+% ============================================================
+% 6 PROCEDIMENTOS METODOLÓGICOS
+% ============================================================
+\secao{PROCEDIMENTOS METODOLÓGICOS}
+
+% Como será realizado o estágio? Pesquisa bibliográfica, estudo de caso,
+% levantamento (ver manual sobre metodologia no grupo).
+%
+% Detalhar se há instrumentos de coleta de dados, como questionário,
+% formulário, entrevista ou observação; quem é a população e a amostra;
+% e como os dados serão tabulados.
+%
+% Se for desenvolvimento de sistemas ou de aplicações, falar quais
+% ferramentas serão utilizadas.
+
+% Escreva os procedimentos metodológicos abaixo deste comentário.
+
+
+% ============================================================
+% 7 ESBOÇO DOS CAPÍTULOS E SEÇÕES
+% ============================================================
+\secao{ESBOÇO DOS CAPÍTULOS E SEÇÕES}
+
+% O relatório de estágio seguirá a seguinte estrutura:
+%
+% Detalhar a estrutura que será adotada. Sugere-se consultar o modelo
+% de relatório de estágio e detalhar principalmente a parte do referencial
+% teórico, que mudará para cada caso.
+
+% Escreva o esboço dos capítulos e seções abaixo deste comentário.
+
+
+% ============================================================
+% 8 CRONOGRAMA
+% ============================================================
+\secao{CRONOGRAMA}
+
+% Colocar um gráfico de Gantt com a programação do estágio, considerando
+% prazos para pesquisas bibliográficas, elaboração do projeto, apresentação
+% do projeto, desenvolvimento do estágio na empresa, elaboração/aplicação
+% de questionários, tabulação de dados, entrevistas, elaboração de
+% relatórios etc.
+%
+% Você pode inserir aqui uma tabela em LaTeX ou uma imagem do gráfico de Gantt.
+
+% Insira o cronograma abaixo deste comentário.
+
+
+% ============================================================
+% REFERÊNCIAS BIBLIOGRÁFICAS
+% ============================================================
+\clearpage
+\renewcommand{\refname}{REFERÊNCIAS BIBLIOGRÁFICAS}
+\phantomsection
+\addcontentsline{toc}{section}{REFERÊNCIAS BIBLIOGRÁFICAS}
+
+% As referências devem ser cadastradas no arquivo referencias.bib.
+%
+% Para citar no texto, use, por exemplo:
+% \citeonline{chave}  -> Autor (ano)
+% \cite{chave}        -> (AUTOR, ano)
+
+\bibliography{referencias}
+
+\end{document}
