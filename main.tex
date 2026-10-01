@@ -112,7 +112,7 @@
 
 \section{APRESENTAÇÃO}
 
-A Biblioteca Central Ruy Alberto Costa Lins, no Campus Sede da Universidade Federal do Acre (UFAC), em Rio Branco, disponibiliza computadores à comunidade acadêmica na Sala Virtual. O Plano de Trabalho do estágio, datado de 1º de junho de 2026, descreve o registro de uso em folhas impressas e sua posterior consolidação em relatórios \cite{planoTrabalho2026}. Neste documento, a denominação Sala Virtual identifica o espaço físico também chamado de Sala de Informática no título do trabalho.
+A Biblioteca Central Ruy Alberto Costa Lins, no Campus Sede da Universidade Federal do Acre (UFAC), em Rio Branco, disponibiliza computadores à comunidade acadêmica na Sala Virtual. O Plano de Trabalho do estágio, datado de 1º de junho de 2026, descreve o registro de uso em folhas impressas e sua posterior consolidação em relatórios. Neste documento, a denominação Sala Virtual identifica o espaço físico também chamado de Sala de Informática no título do trabalho.
 
 O projeto propõe um sistema web para integrar o registro de utilização dos computadores, o atendimento aos usuários e a consulta gerencial. As funcionalidades e seus critérios de verificação estão organizados na Seção~\ref{sec:objetivos}, evitando repetir o catálogo de requisitos nas demais seções.
 
@@ -120,7 +120,7 @@ O projeto propõe um sistema web para integrar o registro de utilização dos co
 
 \secao{PROBLEMA DA PESQUISA}
 
-O processo descrito no Plano de Trabalho exige transcrição e consolidação manual para consultar o histórico e produzir informações sobre a utilização da sala. O documento aponta retrabalho e risco de erros de preenchimento \cite{planoTrabalho2026}. Esse diagnóstico constitui o ponto de partida do estágio; a frequência dos erros e o tempo gasto nas tarefas precisarão ser medidos para avaliar eventuais ganhos.
+O processo descrito no Plano de Trabalho exige transcrição e consolidação manual para consultar o histórico e produzir informações sobre a utilização da sala. O documento aponta retrabalho e risco de erros de preenchimento. Esse diagnóstico constitui o ponto de partida do estágio; a frequência dos erros e o tempo gasto nas tarefas precisarão ser medidos para avaliar eventuais ganhos.
 
 A solução deverá relacionar disponibilidade, reservas e uso efetivo, preservar o histórico dos registros e apresentar informações adequadas às tarefas de cada perfil. Sua avaliação deverá considerar a consistência dos dados e a compreensão dos fluxos pelos usuários.
 
@@ -133,7 +133,7 @@ Assim, a questão orientadora é: \textit{como um sistema web pode apoiar o regi
 
 Desenvolver um sistema web para automatizar o registro, o acompanhamento e a geração de relatórios sobre o uso da Sala Virtual da Biblioteca Central da UFAC.
 
-Esta formulação sintetiza o objetivo do Plano de Trabalho \cite{planoTrabalho2026}; os benefícios administrativos esperados são apresentados na justificativa.
+Esta formulação sintetiza o objetivo do Plano de Trabalho; os benefícios administrativos esperados são apresentados na justificativa.
 
 \subsection{OBJETIVOS ESPECÍFICOS}
 
@@ -177,23 +177,23 @@ Os objetivos do Plano de Trabalho foram agrupados em sete frentes, relacionadas 
 6. Perfis & Matriz de responsabilidades e restrições por papel selecionado. & Rotas e ações permitidas ou bloqueadas conforme a matriz; limitações da ausência de autenticação registradas. \\
 7. Avaliação e documentação & Registros de testes, roteiro de avaliação e guias. & Cenários com resultado esperado e observado, dificuldades e ajustes documentados; instalação reproduzida a partir do guia. \\
 \end{longtable}
-\noindent Fonte: elaboração do autor a partir do Plano de Trabalho \cite{planoTrabalho2026} e do recorte técnico do MVP \cite{escopoMvp2026}.
+\noindent Fonte: síntese do Plano de Trabalho e da especificação do MVP.
 \endgroup
 
 \subsection{DELIMITAÇÃO E EVOLUÇÃO DO ESCOPO}
 \label{sec:delimitacao}
 
-O Plano de Trabalho incluiu fila de espera, relatórios de quatro periodicidades, exportação e diferenciação de permissões entre administradores, servidores e estagiários \cite{planoTrabalho2026}. A documentação do produto redefiniu a primeira entrega como MVP e agrupou as tarefas operacionais no papel \textbf{Monitor da Sala}. Esse papel descreve responsabilidades do sistema, independentemente do vínculo de servidor ou estagiário. O \textbf{Usuário da Sala} representa alunos, professores e técnicos-administrativos; o \textbf{Supervisor da Biblioteca} reúne tarefas operacionais e gerenciais; o \textbf{Administrador do Sistema} permanece como papel de evolução futura \cite{escopoMvp2026}.
+O Plano de Trabalho incluiu fila de espera, relatórios de quatro periodicidades, exportação e diferenciação de permissões entre administradores, servidores e estagiários. A documentação do produto redefiniu a primeira entrega como MVP e agrupou as tarefas operacionais no papel \textbf{Monitor da Sala}. Esse papel descreve responsabilidades do sistema, independentemente do vínculo de servidor ou estagiário. O \textbf{Usuário da Sala} representa alunos, professores e técnicos-administrativos; o \textbf{Supervisor da Biblioteca} reúne tarefas operacionais e gerenciais; o \textbf{Administrador do Sistema} permanece como papel de evolução futura.
 
-No recorte do MVP, a consulta se limita a hoje e amanhã; o uso imediato ocorre hoje, e as reservas atendem horários futuros desses dois dias. A fila de espera foi excluída. A comunicação com usuários ocorre por avisos internos; notificações externas por e-mail, SMS ou serviços equivalentes estão fora dessa entrega. O relatório semanal também foi reservado para evolução futura. A identificação e a seleção de perfil utilizadas no MVP não comprovam a identidade de uma pessoa \cite{escopoMvp2026}.
+No recorte do MVP, a consulta se limita a hoje e amanhã; o uso imediato ocorre hoje, e as reservas atendem horários futuros desses dois dias. A fila de espera foi excluída. A comunicação com usuários ocorre por avisos internos; notificações externas por e-mail, SMS ou serviços equivalentes estão fora dessa entrega. O relatório semanal também foi reservado para evolução futura. A identificação e a seleção de perfil utilizadas no MVP não comprovam a identidade de uma pessoa.
 
-O estado de implementação consultado documenta interfaces do Usuário, do Monitor e do Supervisor, além de reservas, sessões, ocorrências, calendário operacional e relatório mensal. As projeções diária e anual integram o escopo planejado, mas constam como pendentes, assim como os exportadores, a interface própria do Administrador e a autenticação real \cite{estadoImplementacao2026}. A restrição de ações pelo papel selecionado deve ser avaliada nesse contexto de demonstração.
+O estado de implementação consultado documenta interfaces do Usuário, do Monitor e do Supervisor, além de reservas, sessões, ocorrências, calendário operacional e relatório mensal. As projeções diária e anual integram o escopo planejado, mas constam como pendentes, assim como os exportadores, a interface própria do Administrador e a autenticação real. A restrição de ações pelo papel selecionado deve ser avaliada nesse contexto de demonstração.
 
 Essa comparação registra a evolução técnica da proposta. O relatório final deverá relacionar cada item do plano à entrega correspondente, à pendência ou à alteração de escopo, indicando sua justificativa e o alinhamento com a orientação acadêmica e a biblioteca. A disponibilidade descrita no repositório não comprova implantação institucional nem aceitação em uso real.
 
 \secao{JUSTIFICATIVA DA PESQUISA}
 
-A integração dos registros poderá reduzir etapas de transcrição e facilitar a consulta ao histórico. Para a biblioteca, informações reproduzíveis sobre ocupação e demanda poderão apoiar o planejamento do atendimento e o acompanhamento dos equipamentos. A redução de tempo e de erros indicada no Plano de Trabalho é um benefício esperado, a ser examinado mediante comparação de tarefas equivalentes \cite{planoTrabalho2026}.
+A integração dos registros poderá reduzir etapas de transcrição e facilitar a consulta ao histórico. Para a biblioteca, informações reproduzíveis sobre ocupação e demanda poderão apoiar o planejamento do atendimento e o acompanhamento dos equipamentos. A redução de tempo e de erros indicada no Plano de Trabalho é um benefício esperado, a ser examinado mediante comparação de tarefas equivalentes.
 
 Reservas vinculadas à disponibilidade e ao calendário de funcionamento poderão tornar o atendimento mais previsível. O histórico de ocorrências permitirá acompanhar problemas técnicos, enquanto os relatórios deverão oferecer dados para consulta gerencial e prestação de contas.
 
@@ -227,7 +227,7 @@ A ISO 9241-11:2018 fornece um quadro conceitual para compreender a usabilidade c
 
 A modelagem de dados e as restrições de integridade organizam as relações entre registros e apoiam consultas consistentes \cite{silberschatz2019}. No domínio da aplicação, uma sessão representa a visita de um usuário; as alocações registram os computadores utilizados durante essa visita. Essa distinção permite conservar o histórico quando ocorre uma troca de equipamento.
 
-Os relatórios deverão derivar dos registros operacionais e preservar o contexto histórico, incluindo mudanças no calendário e nos turnos. A documentação técnica registra o uso de PostgreSQL e restrições contra sobreposição de alocações \cite{estadoImplementacao2026}. A avaliação deverá conferir a coerência desses registros e reproduzir os totais dos relatórios com dados simulados.
+Os relatórios deverão derivar dos registros operacionais e preservar o contexto histórico, incluindo mudanças no calendário e nos turnos. A documentação técnica registra o uso de PostgreSQL e restrições contra sobreposição de alocações. A avaliação deverá conferir a coerência desses registros e reproduzir os totais dos relatórios com dados simulados.
 
 \subsection{ACESSIBILIDADE DIGITAL}
 
@@ -237,7 +237,7 @@ As verificações combinarão ferramentas automáticas e inspeção manual, como
 
 \secao{PROCEDIMENTOS METODOLÓGICOS}
 
-O estágio articula desenvolvimento aplicado, levantamento qualitativo do contexto e avaliação prática dos fluxos. As fichas de frequência registram atividades de levantamento, modelagem, desenvolvimento e testes \cite{fichasFrequencia2026}; a realização da avaliação com participantes deverá ser comprovada por seus próprios registros. O número e o perfil dos participantes, as condições do ambiente e as tarefas executadas serão descritos no relatório final.
+O estágio articula desenvolvimento aplicado, levantamento qualitativo do contexto e avaliação prática dos fluxos. As fichas de frequência registram atividades de levantamento, modelagem, desenvolvimento e testes; a realização da avaliação com participantes deverá ser comprovada por seus próprios registros. O número e o perfil dos participantes, as condições do ambiente e as tarefas executadas serão descritos no relatório final.
 
 \subsection{LEVANTAMENTO E ESPECIFICAÇÃO}
 
@@ -253,9 +253,9 @@ As telas serão examinadas em dispositivos móveis e computadores, considerando 
 
 \subsection{DESENVOLVIMENTO E CONTROLE DE VERSÕES}
 
-A implementação será organizada em incrementos relacionados às entregas da Tabela~\ref{tab:objetivos}, conforme suas dependências. A documentação consultada registra uma aplicação Django com PostgreSQL e interfaces integradas aos serviços operacionais \cite{estadoImplementacao2026}. Esses elementos caracterizam a versão de desenvolvimento examinada; as condições de implantação serão descritas após sua definição.
+A implementação será organizada em incrementos relacionados às entregas da Tabela~\ref{tab:objetivos}, conforme suas dependências. A documentação consultada registra uma aplicação Django com PostgreSQL e interfaces integradas aos serviços operacionais. Esses elementos caracterizam a versão de desenvolvimento examinada; as condições de implantação serão descritas após sua definição.
 
-O repositório da aplicação manterá o código e a documentação técnica. As referências de escopo e implementação identificam o commit \texttt{1f14bb9} por URLs permanentes com seu identificador completo. O repositório do projeto manterá o texto acadêmico e suas referências. Os guias de uso, instalação e manutenção acompanharão a versão entregue.
+O repositório da aplicação manterá o código e a documentação técnica. A análise de escopo e implementação considera a versão de desenvolvimento \texttt{1f14bb9}. O repositório do projeto manterá o texto acadêmico e suas referências. Os guias de uso, instalação e manutenção acompanharão a versão entregue.
 
 \subsection{TESTES, VALIDAÇÃO E REGISTRO DOS RESULTADOS}
 \label{sec:avaliacao}
@@ -284,7 +284,7 @@ Apêndices poderão reunir instrumentos de levantamento, modelos e registros de 
 
 \secao{CRONOGRAMA}
 
-Na atualização de 1 de outubro de 2026, a Tabela~\ref{tab:cronograma} apresenta a distribuição temporal das atividades registradas, de 27 de maio a 28 de setembro de 2026. A fonte é o conjunto de fichas de controle e frequência do estágio \cite{fichasFrequencia2026}, identificado nas referências por seus períodos e arquivos. A consolidação utiliza as datas dos lançamentos, elimina duplicidades entre versões e não altera os documentos originais. A síntese registra atividades realizadas; os resultados técnicos e a validação deverão ser demonstrados pelas evidências previstas na Seção~\ref{sec:avaliacao}.
+Na atualização de 1 de outubro de 2026, a Tabela~\ref{tab:cronograma} apresenta a distribuição temporal das atividades registradas, de 27 de maio a 28 de setembro de 2026. A síntese reúne as fichas de controle e frequência dos períodos de 27 de maio a 14 de agosto e de 17 de agosto a 28 de setembro de 2026. A consolidação utiliza as datas dos lançamentos, elimina duplicidades entre versões e não altera os documentos originais. A síntese registra atividades realizadas; os resultados técnicos e a validação deverão ser demonstrados pelas evidências previstas na Seção~\ref{sec:avaliacao}.
 
 \begin{table}[htbp]
 \centering
@@ -307,7 +307,7 @@ Na atualização de 1 de outubro de 2026, a Tabela~\ref{tab:cronograma} apresent
 \hline
 \end{tabular}
 \par\vspace{0.2cm}
-\footnotesize Fonte: elaboração do autor a partir das fichas de controle e frequência \cite{fichasFrequencia2026}.
+\footnotesize Fonte: síntese das fichas de controle e frequência do estágio.
 \end{table}
 
 \clearpage
