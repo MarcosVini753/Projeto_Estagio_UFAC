@@ -18,7 +18,7 @@
 \usepackage{url}
 \usepackage{array}
 \usepackage[hidelinks]{hyperref}
-\usepackage[alf]{abntex2cite}
+\usepackage[alf,abnt-cite-style=AuthorYEAR]{abntex2cite}
 
 \renewcommand{\familydefault}{\sfdefault}
 \geometry{a4paper,top=3cm,bottom=2cm,left=3cm,right=2cm}
@@ -234,30 +234,28 @@ Apêndices poderão reunir instrumentos de levantamento, modelos e registros de 
 
 \secao{CRONOGRAMA}
 
-As fichas de controle e frequência fornecidas registram atividades de 27 de maio a 28 de setembro de 2026. A Tabela~\ref{tab:cronograma} consolida esses registros por período, sem repetir lançamentos coincidentes. As datas e descrições comprovam o registro das atividades, mas, isoladamente, não demonstram que cada funcionalidade foi concluída, testada ou validada. O relatório final deverá apresentar as evidências técnicas dos resultados e indicar eventuais pendências.
+A Tabela~\ref{tab:cronograma} apresenta uma síntese das principais etapas desenvolvidas durante o estágio, agrupando atividades relacionadas.
 
 \begin{table}[htbp]
 \centering
-\caption{Atividades consolidadas das fichas de frequência}
+\caption{Cronograma das atividades do estágio}
 \label{tab:cronograma}
 \small
-\begin{tabular}{|>{\raggedright\arraybackslash}p{3.1cm}|>{\raggedright\arraybackslash}p{11.4cm}|}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}p{11cm}|}
 \hline
-\textbf{Período registrado} & \textbf{Síntese das atividades registradas} \\
+\textbf{Período} & \textbf{Principais atividades} \\
 \hline
-27/05/2026 a 03/07/2026 & Levantamento do processo manual, definição preliminar do escopo, dos atores e dos requisitos; elaboração de casos de uso e diagramas de atividades; prototipação das telas; discussão de regras de negócio, dados, relatórios, segurança e testes; organização e revisão da documentação do projeto. \\
+27/05 a 03/07 & Levantamento do processo atual, definição de requisitos, modelagem, diagramas e prototipação das interfaces. \\
 \hline
-06/07/2026 a 14/08/2026 & Consolidação dos requisitos e da documentação técnica; planejamento da arquitetura e desenvolvimento do backend, banco de dados e APIs; atividades sobre computadores, disponibilidade, reservas, sessões, ocorrências, relatórios e calendário operacional; construção e integração inicial da interface; alinhamento sobre o andamento do estágio. \\
+06/07 a 14/08 & Planejamento da arquitetura e desenvolvimento do banco de dados, backend, APIs e funcionalidades principais do sistema. \\
 \hline
-17/08/2026 a 28/08/2026 & Consolidação do MVP e integração da interface do Usuário da Sala; revisão e teste de entrada, sessão, saída e registro de problemas; refinamento das regras de uso imediato, disponibilidade, agenda e seleção de horários; integração das alterações e revisão dos conflitos com reservas. \\
+17/08 a 11/09 & Desenvolvimento e integração das interfaces, refinamento das regras de negócio e realização de testes dos principais fluxos. \\
 \hline
-31/08/2026 a 11/09/2026 & Refinamento das opções de término de sessão e das informações da API e da interface; preparação e execução de testes de ponta a ponta; revisão de perfis e textos; análise e implementação de restrições de turnos, sobreposições e disponibilidade; atualização da documentação das regras operacionais. \\
-\hline
-14/09/2026 a 28/09/2026 & Revisão do calendário, da reconciliação de sessões e dos relatórios; implementação e teste de relatórios consolidados, indicadores e exportações; revisão de filtros, agrupamentos e navegação; análise de acessibilidade; testes de regressão e integração das funcionalidades. \\
+14/09 a 28/09 & Implementação e revisão dos relatórios e indicadores, testes de integração, acessibilidade e ajustes finais. \\
 \hline
 \end{tabular}
 \par\vspace{0.2cm}
-\footnotesize Fonte: síntese das fichas de controle e frequência fornecidas pelo estagiário (2026).
+\footnotesize Fonte: elaborado pelo autor (2026).
 \end{table}
 
 \clearpage
