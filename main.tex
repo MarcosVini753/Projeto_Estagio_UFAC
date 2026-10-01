@@ -15,8 +15,10 @@
 \usepackage{tocloft}
 \usepackage{microtype}
 \usepackage{helvet}
-\usepackage{url}
+\usepackage{xurl}
 \usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
 \usepackage[hidelinks]{hyperref}
 \usepackage[alf]{abntex2cite}
 
@@ -110,117 +112,165 @@
 
 \section{APRESENTAÇÃO}
 
-A Biblioteca Central Ruy Alberto Costa Lins, localizada no Campus Sede da Universidade Federal do Acre (UFAC), em Rio Branco, disponibiliza uma Sala Virtual com computadores para uso da comunidade acadêmica. Atualmente, segundo o Plano de Trabalho do estágio, a utilização do espaço é registrada em folhas impressas. O preenchimento manual e a consolidação posterior desses registros exigem trabalho da equipe da biblioteca e dificultam a consulta imediata a informações sobre ocupação, horários de maior demanda e histórico de uso.
+A Biblioteca Central Ruy Alberto Costa Lins, no Campus Sede da Universidade Federal do Acre (UFAC), em Rio Branco, disponibiliza computadores à comunidade acadêmica na Sala Virtual. O Plano de Trabalho do estágio, datado de 1º de junho de 2026, descreve o registro de uso em folhas impressas e sua posterior consolidação em relatórios \cite{planoTrabalho2026}. Neste documento, a denominação Sala Virtual identifica o espaço físico também chamado de Sala de Informática no título do trabalho.
 
-Este Projeto de Estágio Supervisionado propõe o desenvolvimento de um sistema web para apoiar a gestão e o controle de uso da sala. A solução prevista reunirá o registro de entrada e saída de alunos, professores e técnicos, o acompanhamento dos computadores, uma agenda simples de reservas, a fila de espera e o registro de ocorrências técnicas. Também deverá oferecer um painel diário, emissão de informes aos usuários, relatórios por diferentes períodos e exportação de dados em formatos adequados ao arquivamento e à prestação de contas.
+O projeto propõe um sistema web para integrar o registro de utilização dos computadores, o atendimento aos usuários e a consulta gerencial. As funcionalidades e seus critérios de verificação estão organizados na Seção~\ref{sec:objetivos}, evitando repetir o catálogo de requisitos nas demais seções.
 
-O trabalho será realizado sob orientação da Prof.ª Laura Costa Sarkis e terá como ponto de partida a observação do atendimento e a análise dos modelos de controle usados pela biblioteca. Os requisitos serão detalhados com os responsáveis pelo espaço antes da definição dos fluxos e das regras do sistema. A aplicação será avaliada inicialmente com dados simulados e, posteriormente, por meio de validação dos fluxos com a equipe da Sala Virtual. O presente documento registra o problema, os objetivos, a fundamentação e o caminho metodológico proposto; resultados de implementação e de uso serão apresentados apenas no relatório final, quando houver evidências para sustentá-los.
+\textbf{Nota de atualização, 1 de outubro de 2026.} Esta revisão articula o planejamento do estágio, orientado pela Prof.ª Laura Costa Sarkis, com a documentação da aplicação na versão \texttt{1f14bb9}. A Seção~\ref{sec:delimitacao} registra o recorte do produto mínimo viável (MVP), enquanto o cronograma sintetiza atividades já registradas nas fichas. O método descreve os procedimentos previstos e a avaliação ainda necessária; o estado de implementação é atribuído à documentação técnica, sem equivaler a uma validação em atendimento real.
 
 \secao{PROBLEMA DA PESQUISA}
 
-O controle em papel separa informações que precisam ser consultadas em conjunto: quem está usando a sala, qual computador está disponível, quais reservas estão previstas e quais equipamentos estão indisponíveis. A transcrição e a consolidação dos registros podem gerar retrabalho e erros de preenchimento. Além disso, a equipe não dispõe, no processo descrito no Plano de Trabalho, de uma visão digital integrada para acompanhar a ocupação e produzir rapidamente relatórios diários, semanais, mensais e anuais.
+O processo descrito no Plano de Trabalho exige transcrição e consolidação manual para consultar o histórico e produzir informações sobre a utilização da sala. O documento aponta retrabalho e risco de erros de preenchimento \cite{planoTrabalho2026}. Esse diagnóstico constitui o ponto de partida do estágio; a frequência dos erros e o tempo gasto nas tarefas precisarão ser medidos para avaliar eventuais ganhos.
 
-A necessidade não se limita a substituir a folha impressa. É preciso organizar o atendimento quando todos os computadores estão ocupados, evitar conflitos entre reservas e uso efetivo, registrar ocorrências técnicas e diferenciar as permissões de administradores, servidores da biblioteca e estagiários. A interface deverá ser compreensível para quem atende e para quem utiliza o espaço, considerando também recomendações de acessibilidade digital.
+A solução deverá relacionar disponibilidade, reservas e uso efetivo, preservar o histórico dos registros e apresentar informações adequadas às tarefas de cada perfil. Sua avaliação deverá considerar a consistência dos dados e a compreensão dos fluxos pelos usuários.
 
-Assim, a questão que orienta o estágio é: \textit{como um sistema web pode apoiar, de forma organizada e acessível, o registro, o acompanhamento e a produção de informações sobre o uso da Sala Virtual da Biblioteca Central da UFAC?} O projeto se restringe à Sala Virtual descrita no Plano de Trabalho. Regras específicas de atendimento, duração de uso, prioridade na fila e política de reservas serão levantadas com a biblioteca, em vez de serem presumidas neste documento.
+Assim, a questão orientadora é: \textit{como um sistema web pode apoiar o registro, o acompanhamento e a geração de informações sobre o uso da Sala Virtual da Biblioteca Central da UFAC?} O estudo se restringe a esse espaço, conforme a delimitação da Seção~\ref{sec:delimitacao}.
 
 \secao{OBJETIVOS DA PESQUISA}
+\label{sec:objetivos}
 
 \subsection{OBJETIVO GERAL}
 
-Desenvolver um sistema web para automatizar o registro, o acompanhamento e a geração de relatórios de uso da Sala Virtual da Biblioteca Central da UFAC, contribuindo para a modernização do controle administrativo do espaço, a organização das informações coletadas e a melhoria do acompanhamento da utilização dos computadores pela comunidade acadêmica.
+Desenvolver um sistema web para automatizar o registro, o acompanhamento e a geração de relatórios sobre o uso da Sala Virtual da Biblioteca Central da UFAC.
+
+Esta formulação sintetiza o objetivo do Plano de Trabalho \cite{planoTrabalho2026}; os benefícios administrativos esperados são apresentados na justificativa.
 
 \subsection{OBJETIVOS ESPECÍFICOS}
 
-Para alcançar o objetivo geral, estão previstos os seguintes objetivos específicos, derivados do Plano de Trabalho:
+Os objetivos do Plano de Trabalho foram agrupados em sete frentes, relacionadas a entregas e evidências de verificação na Tabela~\ref{tab:objetivos}. O escopo original e os ajustes do MVP estão explicitados na subseção seguinte.
 
 \begin{enumerate}
-  \item Levantar os requisitos a partir do funcionamento atual da Sala Virtual e dos modelos de controle manual utilizados pela biblioteca.
-  \item Modelar os dados necessários para usuários, computadores, sessões de uso, reservas, fila de espera, ocorrências e relatórios.
-  \item Implementar o registro digital de entrada e saída, com cálculo do tempo de permanência e identificação do turno de utilização.
-  \item Desenvolver o controle da situação dos computadores, distinguindo equipamentos livres, ocupados, reservados e em manutenção.
-  \item Criar uma agenda simples para agendar horários, consultar reservas e controlar o comparecimento dos usuários.
-  \item Registrar os usuários que aguardam a disponibilidade de computadores em uma fila de espera.
-  \item Desenvolver um painel administrativo com usuários presentes, computadores em uso, reservas do dia, ocorrências e envio de notificações ou informes aos usuários da sala.
-  \item Registrar ocorrências técnicas, incluindo defeitos, manutenção, indisponibilidade e problemas de funcionamento dos computadores.
-  \item Gerar relatórios diários, semanais, mensais e anuais, com totais por turno, data, computador e período.
-  \item Permitir a exportação dos relatórios para arquivamento e prestação de contas, em PDF, CSV ou planilha, conforme os requisitos confirmados com a biblioteca.
-  \item Diferenciar as permissões de administradores, servidores da biblioteca e estagiários por meio de perfis de acesso.
-  \item Realizar testes com dados simulados e validar posteriormente os fluxos do sistema com base no atendimento real da Sala Virtual.
-  \item Produzir documentação básica de uso, instalação e manutenção para apoiar a continuidade do sistema após o estágio.
+  \item Levantar e especificar requisitos a partir da rotina e dos instrumentos de controle da biblioteca.
+  \item Modelar os dados, as regras de negócio e os fluxos de utilização da sala.
+  \item Implementar o controle de sessões, disponibilidade e reservas dos computadores.
+  \item Desenvolver o acompanhamento operacional, o tratamento de ocorrências e os informes aos usuários.
+  \item Produzir relatórios consolidados e preparar sua exportação para arquivamento.
+  \item Definir as responsabilidades dos perfis e verificar as restrições das ações disponíveis no MVP.
+  \item Testar a aplicação, avaliar seus fluxos com a biblioteca e documentar uso, instalação e manutenção.
 \end{enumerate}
+
+\begingroup
+\small\singlespacing
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}p{4.7cm}>{\raggedright\arraybackslash}p{7.4cm}}
+\caption{Objetivos, entregas e evidências de verificação}\label{tab:objetivos}\\
+\toprule
+\textbf{Objetivo} & \textbf{Entrega} & \textbf{Evidência esperada} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{l}{\tablename~\thetable{} -- continuação}\\
+\toprule
+\textbf{Objetivo} & \textbf{Entrega} & \textbf{Evidência esperada} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{Continua na próxima página}\\
+\endfoot
+\bottomrule
+\endlastfoot
+1. Requisitos & Especificação com origem, prioridade e critério de aceitação. & Correspondência entre necessidades levantadas, requisitos identificados e critérios discutidos com a biblioteca. \\
+2. Modelagem & Modelo de dados, casos de uso e regras de negócio. & Coerência entre entidades, fluxos e restrições, incluindo preservação do histórico e rejeição de registros conflitantes. \\
+3. Uso e reservas & Entrada, saída, troca de computador e agenda. & Cenários que confirmem permanência calculada, histórico de alocações, disponibilidade por intervalo e bloqueio de sobreposições. \\
+4. Operação & Painel, ocorrências e avisos internos. & Sessões e estados exibidos conforme os registros; ocorrências com situação atualizada; avisos visíveis apenas durante sua vigência. \\
+5. Relatórios & Relatório mensal e evolução das demais projeções e exportações. & Totais e filtros comparados com um conjunto de dados de resultado conhecido; arquivos exportados conferidos quando implementados. \\
+6. Perfis & Matriz de responsabilidades e restrições por papel selecionado. & Rotas e ações permitidas ou bloqueadas conforme a matriz; limitações da ausência de autenticação registradas. \\
+7. Avaliação e documentação & Registros de testes, roteiro de avaliação e guias. & Cenários com resultado esperado e observado, dificuldades e ajustes documentados; instalação reproduzida a partir do guia. \\
+\end{longtable}
+\noindent Fonte: elaboração do autor a partir do Plano de Trabalho \cite{planoTrabalho2026} e do recorte técnico do MVP \cite{escopoMvp2026}.
+\endgroup
+
+\subsection{DELIMITAÇÃO E EVOLUÇÃO DO ESCOPO}
+\label{sec:delimitacao}
+
+O Plano de Trabalho incluiu fila de espera, relatórios de quatro periodicidades, exportação e diferenciação de permissões entre administradores, servidores e estagiários \cite{planoTrabalho2026}. A documentação do produto redefiniu a primeira entrega como MVP e agrupou as tarefas operacionais no papel \textbf{Monitor da Sala}. Esse papel descreve responsabilidades do sistema, independentemente do vínculo de servidor ou estagiário. O \textbf{Usuário da Sala} representa alunos, professores e técnicos-administrativos; o \textbf{Supervisor da Biblioteca} reúne tarefas operacionais e gerenciais; o \textbf{Administrador do Sistema} permanece como papel de evolução futura \cite{escopoMvp2026}.
+
+No recorte do MVP, a consulta se limita a hoje e amanhã; o uso imediato ocorre hoje, e as reservas atendem horários futuros desses dois dias. A fila de espera foi excluída. A comunicação com usuários ocorre por avisos internos; notificações externas por e-mail, SMS ou serviços equivalentes estão fora dessa entrega. O relatório semanal também foi reservado para evolução futura. A identificação e a seleção de perfil utilizadas no MVP não comprovam a identidade de uma pessoa \cite{escopoMvp2026}.
+
+O estado de implementação consultado documenta interfaces do Usuário, do Monitor e do Supervisor, além de reservas, sessões, ocorrências, calendário operacional e relatório mensal. As projeções diária e anual integram o escopo planejado, mas constam como pendentes, assim como os exportadores, a interface própria do Administrador e a autenticação real \cite{estadoImplementacao2026}. A restrição de ações pelo papel selecionado deve ser avaliada nesse contexto de demonstração.
+
+Essa comparação registra a evolução técnica da proposta. O relatório final deverá relacionar cada item do plano à entrega correspondente, à pendência ou à alteração de escopo, indicando sua justificativa e o alinhamento com a orientação acadêmica e a biblioteca. A disponibilidade descrita no repositório não comprova implantação institucional nem aceitação em uso real.
 
 \secao{JUSTIFICATIVA DA PESQUISA}
 
-O registro manual atualmente descrito no Plano de Trabalho exige preenchimento em folhas impressas e consolidação posterior. Essa rotina dificulta o acompanhamento do espaço no momento do atendimento e torna mais trabalhosa a obtenção de informações como a quantidade de usuários por turno, os dias mais movimentados e os computadores mais utilizados. A informatização proposta busca organizar os registros em uma única fonte de consulta e reduzir etapas repetitivas da elaboração de relatórios. Esses benefícios são expectativas do projeto e deverão ser examinados durante a validação, sem pressupor ganhos já medidos.
+A integração dos registros poderá reduzir etapas de transcrição e facilitar a consulta ao histórico. Para a biblioteca, informações reproduzíveis sobre ocupação e demanda poderão apoiar o planejamento do atendimento e o acompanhamento dos equipamentos. A redução de tempo e de erros indicada no Plano de Trabalho é um benefício esperado, a ser examinado mediante comparação de tarefas equivalentes \cite{planoTrabalho2026}.
 
-O sistema também poderá apoiar decisões operacionais da biblioteca. A visualização dos computadores disponíveis, ocupados, reservados ou em manutenção poderá orientar o atendimento; a agenda e a fila de espera poderão tornar mais claro o tratamento da demanda; e o histórico de ocorrências poderá auxiliar no acompanhamento de problemas técnicos. Relatórios por período e por turno poderão oferecer informações para planejamento do uso da sala e prestação de contas institucional.
+Reservas vinculadas à disponibilidade e ao calendário de funcionamento poderão tornar o atendimento mais previsível. O histórico de ocorrências permitirá acompanhar problemas técnicos, enquanto os relatórios deverão oferecer dados para consulta gerencial e prestação de contas.
 
-Há ainda uma justificativa ligada à qualidade da interação. Uma aplicação utilizada em serviço universitário precisa apresentar informações e formulários de modo compreensível e acessível. A proposta incorpora a análise do contexto de uso e a avaliação da interface com os usuários envolvidos, em consonância com práticas de Interação Humano-Computador e de projeto centrado nas pessoas \cite{barbosaSilva2010,iso9241_210_2019}. As recomendações do eMAG e os critérios da WCAG servirão como referência para planejar e verificar a acessibilidade da interface \cite{emag2014,wcag22_2024}.
+A qualidade da interação também é relevante: os perfis possuem tarefas distintas, e a interface precisa apresentar informações compreensíveis e acessíveis. A análise do contexto de uso orientará o projeto das telas \cite{barbosaSilva2010,iso9241_210_2019}; eMAG e WCAG fundamentarão as verificações de acessibilidade descritas no método \cite{emag2014,wcag22_2024}.
 
-Do ponto de vista acadêmico, o estágio permite integrar levantamento de requisitos, modelagem de dados, projeto de interface, desenvolvimento e testes em um problema real de Sistemas de Informação. A documentação do processo deverá permitir que o relatório final diferencie requisitos planejados, funcionalidades efetivamente entregues, limitações observadas e recomendações para continuidade.
+Do ponto de vista acadêmico, o estágio articula requisitos, modelagem, desenvolvimento e avaliação em um serviço universitário. Seus registros permitirão examinar as decisões tomadas, as limitações da entrega e as condições para continuidade do sistema.
 
 \secao{FUNDAMENTAÇÃO TEÓRICA}
 
 \subsection{ENGENHARIA DE SOFTWARE}
 
-A Engenharia de Software reúne processos e técnicas para especificar, construir, verificar e evoluir sistemas. Em um projeto institucional, essas atividades ajudam a relacionar o problema observado às funcionalidades propostas e a registrar decisões que poderão ser revisadas ao longo do desenvolvimento \cite{sommerville2016}. Para a Sala Virtual, isso significa descrever o fluxo de atendimento antes de transformar o registro em papel em telas e rotinas digitais.
+A Engenharia de Software reúne atividades de especificação, desenvolvimento, verificação e evolução de sistemas \cite{sommerville2016}. Neste estágio, sua aplicação relaciona as necessidades da biblioteca às entregas e às evidências que permitirão avaliá-las.
 
 \subsubsection{Engenharia de requisitos}
 
-Requisitos expressam o que o sistema deverá fazer e quais condições de qualidade deverão orientar seu funcionamento. A norma ISO/IEC/IEEE 29148:2018 oferece orientação para os processos e produtos da Engenharia de Requisitos, incluindo a elaboração de requisitos verificáveis \cite{iso29148_2018}. No estágio, o levantamento deverá combinar observação da rotina, análise das folhas usadas pela biblioteca e conversas com os responsáveis pelo atendimento.
+Requisitos descrevem as funções e as condições de qualidade esperadas de um sistema. A ISO/IEC/IEEE 29148:2018 orienta os processos e os documentos de Engenharia de Requisitos \cite{iso29148_2018}. Cada requisito do estágio deverá indicar sua origem, prioridade e critério de aceitação, permitindo examinar se a implementação atende à necessidade registrada.
 
-Os requisitos funcionais deverão cobrir, entre outros, entrada e saída, estado dos computadores, reservas, fila, ocorrências, informes, relatórios e exportação. Requisitos não funcionais deverão tratar de acesso por perfil, clareza da interface, acessibilidade e integridade dos registros. Regras ainda desconhecidas, como tempo máximo de uso e prioridade de atendimento, deverão ser confirmadas antes de sua especificação. Uma matriz que relacione cada requisito ao objetivo correspondente e a um caso de teste poderá apoiar a rastreabilidade \cite{sommerville2016,iso29148_2018}.
+A rastreabilidade relaciona necessidades, requisitos e artefatos de desenvolvimento \cite{sommerville2016}. A Tabela~\ref{tab:objetivos} estabelece essa relação em nível de objetivos; a especificação detalhada deverá vinculá-los a casos de uso e de teste. Mudanças de regra ou de escopo deverão manter a justificativa e a versão em que passaram a valer.
 
 \subsubsection{Verificação e validação}
 
-A verificação examina se os componentes e fluxos funcionam conforme a especificação; a validação observa se a solução atende à necessidade de quem a utilizará \cite{sommerville2016}. No projeto, os testes com dados simulados deverão cobrir registros completos e incompletos, conflitos de reserva, transições de estado de computadores, permissões e consistência dos totais dos relatórios. A validação posterior com a equipe da biblioteca deverá confrontar os fluxos previstos com a rotina real, registrando ajustes e limites identificados.
+A verificação examina a correspondência entre implementação e especificação; a validação avalia a adequação da solução às necessidades dos usuários \cite{sommerville2016}. No estágio, cenários com dados de resultado conhecido sustentarão a verificação funcional, e a avaliação de tarefas com a equipe da biblioteca sustentará a validação dos fluxos. Esses procedimentos e seus registros são detalhados na Seção~\ref{sec:avaliacao}.
 
 \subsection{INTERAÇÃO HUMANO-COMPUTADOR}
 
-A Interação Humano-Computador estuda o projeto e a avaliação de sistemas interativos considerando as pessoas, suas tarefas e o contexto de uso. Barbosa e Silva apresentam métodos para identificar necessidades dos usuários, projetar interfaces e avaliar a interação \cite{barbosaSilva2010}. Na Sala Virtual, haverá atividades distintas para quem busca um computador, para quem registra o atendimento e para quem acompanha relatórios; essas diferenças devem orientar a organização das telas e das informações.
+A Interação Humano-Computador considera as pessoas, suas tarefas e o contexto no projeto e na avaliação de sistemas interativos \cite{barbosaSilva2010}. A ISO 9241-210:2019 oferece princípios e atividades de projeto centrado nas pessoas ao longo do desenvolvimento \cite{iso9241_210_2019}. Na Sala Virtual, isso implica observar as tarefas dos três perfis funcionais e revisar as telas a partir das dificuldades encontradas durante seu uso.
 
-A ISO 9241-210:2019 apresenta princípios e atividades de projeto centrado nas pessoas ao longo do ciclo de vida de sistemas interativos \cite{iso9241_210_2019}. Assim, a proposta prevê descrever tarefas frequentes, produzir representações das interfaces e submetê-las a avaliação com os envolvidos. Indicadores observáveis, como compreensão dos estados dos computadores, facilidade de localizar uma reserva e prevenção de erros em formulários, poderão orientar os ajustes. A escolha de padrões visuais e mensagens deverá resultar do contexto de uso identificado, e não apenas da preferência técnica da equipe.
+A ISO 9241-11:2018 fornece um quadro conceitual para compreender a usabilidade como resultado do uso \cite{iso9241_11_2018}. A avaliação proposta observará conclusão das tarefas, tempo, erros, pedidos de ajuda e apreciação dos participantes. O roteiro de observação será definido para este estágio; a norma fundamenta os conceitos e não prescreve um método específico de teste.
 
 \subsection{BANCO DE DADOS}
 
-Um sistema de banco de dados permite organizar e consultar informações mantendo relações entre elas. A modelagem conceitual e a definição de restrições de integridade são importantes para evitar registros contraditórios e apoiar consultas confiáveis \cite{silberschatz2019}. No sistema proposto, usuários, computadores, sessões de uso, reservas, posições de espera e ocorrências estarão relacionados; por exemplo, uma sessão deverá indicar o computador utilizado e os horários de entrada e saída.
+A modelagem de dados e as restrições de integridade organizam as relações entre registros e apoiam consultas consistentes \cite{silberschatz2019}. No domínio da aplicação, uma sessão representa a visita de um usuário; as alocações registram os computadores utilizados durante essa visita. Essa distinção permite conservar o histórico quando ocorre uma troca de equipamento.
 
-O modelo de dados também deverá sustentar os relatórios previstos no Plano de Trabalho. Antes da implementação, será necessário definir quais eventos geram registros, como representar ausência de comparecimento, como registrar manutenção e quais dados são necessários para totais por turno, data, computador e período. O esquema e as consultas deverão ser examinados com casos simulados para verificar se os números apresentados são reproduzíveis e coerentes. A escolha do gerenciador de banco de dados será registrada após a análise das condições técnicas do ambiente de implantação, sem pressupor uma tecnologia que o Plano de Trabalho não definiu.
+Os relatórios deverão derivar dos registros operacionais e preservar o contexto histórico, incluindo mudanças no calendário e nos turnos. A documentação técnica registra o uso de PostgreSQL e restrições contra sobreposição de alocações \cite{estadoImplementacao2026}. A avaliação deverá conferir a coerência desses registros e reproduzir os totais dos relatórios com dados simulados.
 
 \subsection{ACESSIBILIDADE DIGITAL}
 
-O Modelo de Acessibilidade em Governo Eletrônico (eMAG), versão 3.1, reúne recomendações brasileiras para tornar conteúdos e serviços digitais públicos acessíveis \cite{emag2014}. Como o sistema atenderá um espaço universitário público, o eMAG é uma referência pertinente para planejar formulários, navegação, apresentação de informações e avaliação da interface. A Web Content Accessibility Guidelines (WCAG) 2.2, do W3C, complementa esse planejamento com critérios de sucesso verificáveis para conteúdo web \cite{wcag22_2024}.
+O eMAG 3.1 reúne recomendações brasileiras para acessibilidade de serviços digitais públicos \cite{emag2014}. A WCAG 2.2 apresenta critérios de sucesso verificáveis para conteúdo web \cite{wcag22_2024}. Neste projeto, a versão de referência da WCAG é a recomendação publicada em 12 de dezembro de 2024, identificada por sua URL datada.
 
-Na avaliação prevista, deverão ser examinados, conforme as telas produzidas, rótulos de campos, sequência de navegação por teclado, foco visível, contraste, mensagens de erro e alternativas textuais para informações visuais. A verificação automática poderá localizar parte dos problemas, mas deverá ser complementada por inspeção manual e observação de uso. A adoção dessas referências neste projeto não constitui, por si só, uma declaração de conformidade: o relatório final deverá informar os critérios efetivamente avaliados e os resultados encontrados \cite{emag2014,wcag22_2024}.
+As verificações combinarão ferramentas automáticas e inspeção manual, como recomenda o processo de avaliação do eMAG \cite{emag2014}. A Seção~\ref{sec:avaliacao} identifica os critérios iniciais e o modo de registro. O relatório final deverá informar telas, versões, critérios examinados e resultados, permitindo delimitar o alcance da avaliação.
 
 \secao{PROCEDIMENTOS METODOLÓGICOS}
 
-O estágio será conduzido como um trabalho aplicado de desenvolvimento de sistema de informação, com levantamento qualitativo do contexto de atendimento e avaliação prática dos fluxos propostos. O local de estudo é a Sala Virtual da Biblioteca Central Ruy Alberto Costa Lins, no Campus Sede da UFAC. Participarão do levantamento os responsáveis pelo funcionamento do espaço e, quando pertinente à validação, pessoas que executam ou recebem o atendimento. A quantidade de participantes e os procedimentos de coleta serão definidos com a biblioteca; este projeto não presume uma amostra numérica.
+O estágio articula desenvolvimento aplicado, levantamento qualitativo do contexto e avaliação prática dos fluxos. As fichas de frequência registram atividades de levantamento, modelagem, desenvolvimento e testes \cite{fichasFrequencia2026}; a realização da avaliação com participantes deverá ser comprovada por seus próprios registros. O número e o perfil dos participantes, as condições do ambiente e as tarefas executadas serão descritos no relatório final.
 
 \subsection{LEVANTAMENTO E ESPECIFICAÇÃO}
 
-Inicialmente, serão observados o registro de entrada e saída, a atribuição de computadores, o tratamento de espera e a elaboração dos relatórios. As folhas impressas e demais modelos de controle serão analisados para identificar campos, regras e dificuldades recorrentes. Conversas com servidores e estagiários deverão esclarecer exceções, prioridades e necessidades de consulta. Os dados necessários à especificação serão descritos por categoria, evitando a reprodução de matrículas ou outros registros pessoais reais na documentação pública.
+O levantamento combinará observação do atendimento, análise dos instrumentos de controle e conversas com os responsáveis pelo espaço. Os registros deverão identificar campos utilizados, tarefas recorrentes, exceções e dificuldades relatadas. A descrição pública usará categorias de dados e exemplos fictícios, preservando matrículas e demais informações pessoais.
 
-O resultado desta etapa será uma relação de requisitos funcionais e não funcionais, com indicação de origem, prioridade acordada com a biblioteca e critério de verificação. Serão descritos os fluxos de entrada, saída, reserva, comparecimento, espera, manutenção, ocorrência, emissão de informes e consulta de relatórios. Regras de negócio ainda não confirmadas permanecerão identificadas para validação com o setor.
+A especificação relacionará os requisitos aos objetivos da Tabela~\ref{tab:objetivos}. Para cada regra, deverão ser registrados origem, versão e critério de aceitação. A comparação com o Plano de Trabalho e com o recorte do MVP permitirá identificar inclusões, exclusões e pendências para discussão com a biblioteca.
 
 \subsection{MODELAGEM E PLANEJAMENTO DA SOLUÇÃO}
 
-Com os requisitos definidos, serão preparados o modelo de dados, a descrição dos perfis de acesso e representações das principais telas e fluxos. A modelagem deverá contemplar usuários, computadores, sessões, reservas, fila de espera e ocorrências, além dos dados necessários aos relatórios. Serão especificadas as condições para mudança de estado dos computadores e para evitar registros ou reservas conflitantes. O planejamento da interface considerará as tarefas dos diferentes perfis e os critérios de acessibilidade selecionados a partir do eMAG e da WCAG \cite{barbosaSilva2010,emag2014,wcag22_2024}.
+Os artefatos de modelagem incluirão o modelo de dados, os casos de uso, os fluxos de tarefas e a matriz de responsabilidades. A revisão deverá conferir a correspondência entre esses artefatos e as regras implementadas, especialmente conflitos de intervalo e preservação do histórico.
 
-\subsection{DESENVOLVIMENTO PREVISTO}
+As telas serão examinadas em dispositivos móveis e computadores, considerando as tarefas dos perfis funcionais e as referências de IHC e acessibilidade \cite{barbosaSilva2010,emag2014,wcag22_2024}. Estados, mensagens de erro e alternativas de navegação deverão ser apresentados de forma compreensível.
 
-A implementação será organizada em incrementos: cadastro e situação dos computadores; registro de entrada e saída com cálculo de permanência e turno; agenda, reservas e comparecimento; fila de espera; ocorrências; painel e informes; relatórios e exportação; e controle de permissões. A ordem poderá ser ajustada conforme dependências identificadas no levantamento, preservando a cobertura dos objetivos aprovados. As tecnologias de implementação serão descritas no relatório final após sua escolha e uso efetivo. O código da aplicação ficará no repositório informado para esse fim, enquanto este projeto e suas referências permanecerão no repositório de documentação.
+\subsection{DESENVOLVIMENTO E CONTROLE DE VERSÕES}
+
+A implementação será organizada em incrementos relacionados às entregas da Tabela~\ref{tab:objetivos}, conforme suas dependências. A documentação consultada registra uma aplicação Django com PostgreSQL e interfaces integradas aos serviços operacionais \cite{estadoImplementacao2026}. Esses elementos caracterizam a versão de desenvolvimento examinada; as condições de implantação serão descritas após sua definição.
+
+O repositório da aplicação manterá o código e a documentação técnica. Para permitir a reprodução desta análise, as referências de escopo e implementação apontam para o commit \texttt{1f14bb9d2657d35715dd1667b8e2b19dadcb530d}. O repositório do projeto manterá o texto acadêmico e suas referências. Alterações posteriores deverão ser identificadas pela versão avaliada.
 
 \subsection{TESTES, VALIDAÇÃO E REGISTRO DOS RESULTADOS}
+\label{sec:avaliacao}
 
-Antes do uso com o fluxo real, serão elaborados cenários com dados simulados. Os testes deverão verificar, no mínimo: entrada e saída com horários válidos; cálculo de permanência e turno; estados dos computadores; conflitos de reserva; comparecimento; inclusão e atendimento da fila; restrição de ações por perfil; registro de ocorrências; totais e filtros dos relatórios; e arquivos exportados. Problemas encontrados e correções serão registrados para permitir sua análise no relatório final.
+Os testes funcionais usarão dados simulados e casos associados aos critérios da Tabela~\ref{tab:objetivos}. Cada registro conterá versão, condições iniciais, ação, resultado esperado, resultado observado e eventual correção. Os cenários incluirão intervalos válidos e conflitantes, alterações de calendário, estados dos computadores e restrições por perfil. Os totais dos relatórios serão comparados com valores calculados a partir de um conjunto controlado de sessões e reservas; exportações serão verificadas quando estiverem disponíveis.
 
-Posteriormente, os fluxos serão apresentados à equipe da Sala Virtual para validação em relação ao atendimento cotidiano. Serão observadas a compreensão das telas, a adequação das informações exibidas e as divergências entre regras especificadas e prática do setor. Ajustes solicitados serão documentados com sua justificativa. A documentação de uso, instalação e manutenção deverá acompanhar a versão entregue. O relatório final indicará o que foi implementado e verificado, o que permaneceu pendente e quais evidências sustentam cada conclusão.
+A avaliação com a equipe da biblioteca empregará tarefas representativas: localizar disponibilidade, criar uma reserva, registrar uso, tratar uma ocorrência e consultar o relatório mensal, conforme o papel do participante. Serão registrados conclusão ou abandono, tempo de execução, erros, pedidos de ajuda e comentários sobre a clareza da interface. Essas observações fornecerão evidências de usabilidade no contexto avaliado \cite{barbosaSilva2010,iso9241_11_2018}. Para investigar redução de trabalho manual, será comparada uma tarefa de consolidação equivalente nos dois processos, com o mesmo conjunto fictício de registros e descrição das condições de execução.
+
+A inspeção de acessibilidade adotará inicialmente os critérios WCAG 2.2: alternativas textuais (1.1.1), contraste mínimo (1.4.3), uso por teclado (2.1.1), ausência de bloqueio do teclado (2.1.2), ordem do foco (2.4.3), foco visível (2.4.7), foco não encoberto (2.4.11), identificação de erros (3.3.1), rótulos ou instruções (3.3.2) e mensagens de estado (4.1.3) \cite{wcag22_2024}. O registro indicará tela, critério, procedimento, evidência e resultado, incluindo justificativas de não aplicabilidade. Esse recorte não basta para declarar conformidade integral com a WCAG.
+
+O relatório final confrontará as evidências com os objetivos, registrará mudanças de escopo e apresentará pendências de desenvolvimento e validação. Os guias de uso, instalação e manutenção deverão acompanhar a versão entregue.
 
 \secao{ESBOÇO DOS CAPÍTULOS E SEÇÕES}
 
-O relatório final de estágio, a ser escrito após a execução das atividades, deverá apresentar a seguinte estrutura preliminar:
+O relatório final deverá apresentar a seguinte estrutura preliminar:
 
 \begin{enumerate}
   \item \textbf{Introdução}: contexto da Biblioteca Central e da Sala Virtual, problema, objetivos, justificativa, método e organização do relatório.
@@ -230,11 +280,11 @@ O relatório final de estágio, a ser escrito após a execução das atividades,
   \item \textbf{Considerações finais e recomendações}: síntese do trabalho realizado e orientações para continuidade, manutenção ou evolução do sistema.
 \end{enumerate}
 
-Apêndices poderão reunir instrumentos de levantamento, modelos e registros de teste produzidos no estágio, desde que sua divulgação não exponha dados pessoais ou informações internas desnecessárias. A estrutura poderá ser refinada com a orientação acadêmica conforme as atividades realizadas.
+Apêndices poderão reunir instrumentos de levantamento, modelos e registros de avaliação produzidos no estágio, com dados fictícios ou anonimizados. A estrutura será refinada com a orientação acadêmica.
 
 \secao{CRONOGRAMA}
 
-As fichas de controle e frequência fornecidas registram atividades de 27 de maio a 28 de setembro de 2026. A Tabela~\ref{tab:cronograma} consolida esses registros por período, sem repetir lançamentos coincidentes. As datas e descrições comprovam o registro das atividades, mas, isoladamente, não demonstram que cada funcionalidade foi concluída, testada ou validada. O relatório final deverá apresentar as evidências técnicas dos resultados e indicar eventuais pendências.
+Na atualização de 1 de outubro de 2026, a Tabela~\ref{tab:cronograma} apresenta a distribuição temporal das atividades registradas, de 27 de maio a 28 de setembro de 2026. A fonte é o conjunto de fichas de controle e frequência do estágio \cite{fichasFrequencia2026}, identificado nas referências por seus períodos e arquivos. A consolidação utiliza as datas dos lançamentos, elimina duplicidades entre versões e não altera os documentos originais. A síntese registra atividades realizadas; os resultados técnicos e a validação deverão ser demonstrados pelas evidências previstas na Seção~\ref{sec:avaliacao}.
 
 \begin{table}[htbp]
 \centering
@@ -257,7 +307,7 @@ As fichas de controle e frequência fornecidas registram atividades de 27 de mai
 \hline
 \end{tabular}
 \par\vspace{0.2cm}
-\footnotesize Fonte: síntese das fichas de controle e frequência fornecidas pelo estagiário (2026).
+\footnotesize Fonte: elaboração do autor a partir das fichas de controle e frequência \cite{fichasFrequencia2026}.
 \end{table}
 
 \clearpage
